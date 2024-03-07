@@ -1,46 +1,24 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-import TestScreen from '../TestScreen';
+import {createStackNavigator} from '@react-navigation/stack';
+import OnboardingMain from '../Screens/Onboarding/OnboardingMain';
 import WebScreen from '../WebScreen';
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-export const TabNavigator = (): JSX.Element => {
+const MainStack = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen
-        options={{
-          title: 'Инструменты',
-        }}
-        name="ServicesScreen"
-        component={WebScreen}
-      />
-
-      <Tab.Screen
-        options={{
-          headerShown: true,
-          title: 'Аналитика',
-        }}
-        name="AnalScreen"
-        component={TestScreen}
-      />
-      <Tab.Screen
-        options={{
-          title: 'Профиль',
-        }}
-        name="ProfileScreen"
-        component={TestScreen}
-      />
-    </Tab.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Onboarding" component={OnboardingMain} />
+      <Stack.Screen name="WebScreen" component={WebScreen} />
+    </Stack.Navigator>
   );
 };
 
 const MainNavigate = () => {
   return (
     <NavigationContainer>
-      <TabNavigator />
+      <MainStack />
     </NavigationContainer>
   );
 };

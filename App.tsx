@@ -7,19 +7,21 @@
 
 import React from 'react';
 
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import MainNavigate from './components/routes/MainNavigate';
+import {View} from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return <MainNavigate />;
+  return (
+    <View style={{flex: 1}}>
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={{flex: 1}}>
+          <MainNavigate />
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
+    </View>
+  );
 }
 
 export default App;
