@@ -5,24 +5,30 @@ import {
   View,
   ImageBackground,
   StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import MyStatusBar from '../../MyStatusBar';
 import {PaginationComponent} from './PaginationComponent';
-import {stylesConst} from '../../../constants';
+import {colors, stylesConst} from '../../../constants';
+import ProfileIcon from '../../../assets/icons/ProfileIcon';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 
 const OnboardingMain = () => {
   return (
     <View style={styles.container}>
-      <View style={{position: 'absolute'}}>
+      <View style={styles.containerAbsolute}>
         <MyStatusBar barStyleT="dark-content" colorStatus="transparent" />
       </View>
+      <TouchableOpacity style={styles.prfileStyle}>
+        <ProfileIcon />
+      </TouchableOpacity>
       <SwiperFlatList
         renderAll={true}
         showPagination
+        paginationDefaultColor="rgba(255, 255, 255, 0.24)"
         paginationStyle={styles.paginationStyle}
         paginationStyleItem={styles.paginationStyleItem}
         PaginationComponent={PaginationComponent}>
@@ -34,7 +40,7 @@ const OnboardingMain = () => {
             <Text style={stylesConst.text_title_32_e}>
               Saleads.pro мультисервисная CPA сеть
             </Text>
-            <Text style={[stylesConst.text_14_r, {marginBottom: 18}]}>
+            <Text style={styles.text_14_margin}>
               широким выбором офферов, включающая в себя множество встроенных
               бесплатных сервисов и инструментов для работы с трафиком.
             </Text>
@@ -110,7 +116,7 @@ const OnboardingMain = () => {
           style={styles.child}>
           <View style={styles.textContainer}>
             <Text style={stylesConst.text_title_32_e}>Офферы</Text>
-            <Text style={[stylesConst.text_14_r, {marginBottom: 18}]}>
+            <Text style={styles.text_14_margin}>
               Финансы (Займы/Кредиты/Карты), РКО, HR-работа, Онлайн курсы,
               Страхование, Инвестиции, Игры, Туризм, E-commerce
             </Text>
@@ -128,7 +134,7 @@ const OnboardingMain = () => {
           source={require('../../../assets/welcome7.png')}
           imageStyle={styles.backgroundImageContainer}
           style={styles.child}>
-          <Text style={styles.text}>1</Text>
+          <Text>23</Text>
         </ImageBackground>
       </SwiperFlatList>
     </View>
@@ -143,11 +149,12 @@ const styles = StyleSheet.create({
   child: {width},
   text: {fontSize: 32, textAlign: 'left'},
   paginationStyle: {
-    paddingHorizontal: 28,
+    paddingLeft: 28,
+    paddingRight: 72,
     flex: 1,
     gap: 4,
-
     top: STATUSBAR_HEIGHT,
+    marginTop: 26,
     width: '100%',
   },
   paginationStyleItem: {
@@ -165,5 +172,26 @@ const styles = StyleSheet.create({
     paddingTop: 88,
     paddingLeft: 34,
     paddingRight: 45,
+  },
+  prfileStyle: {
+    position: 'absolute',
+    right: 11,
+    zIndex: 3,
+    top: STATUSBAR_HEIGHT,
+    marginTop: 9,
+    width: 40,
+    height: 40,
+    backgroundColor: colors.GREEN,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 12,
+    borderRadius: 50,
+  },
+  text_14_margin: {
+    ...stylesConst.text_14_r,
+    marginBottom: 18,
+  },
+  containerAbsolute: {
+    position: 'absolute',
   },
 });

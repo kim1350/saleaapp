@@ -3,6 +3,7 @@ import {PixelRatio, StyleSheet} from 'react-native';
 export const colors = {
   TEXT_TITLE: '#F5F7FF',
   INACTIVE_TEXT: '#A8C9F0',
+  GREEN: '#5EC76F',
 };
 
 export const fonts = {
