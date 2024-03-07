@@ -1,45 +1,51 @@
+import {PixelRatio, StyleSheet} from 'react-native';
+
 export const colors = {
-  BG: '#F5F5F5',
-  TEXT_TITLE: '#212121',
-  ORANGE: '#FF6900',
-  INACTIVE_TEXT: '#9E9E9E',
-  SECOND_BTN: '#EEEEEE',
-  BLACK: '#000000',
-  BLACK21: '#212121',
-  WHITE: '#FFFFFF',
-  BORDER_GRAY: '#E0E0E0',
-  BG2: '#F4F4F4',
-  SLIDE_COLOR: '#D0D0D0',
-  GREEEN: '#45B828',
-  YELLOW: '#FFC107',
-  REDD: '#FF3D00',
-  REQUIRED_ERROR: '#E54141',
-  REQUIRED_BACKGROUND: '#FFE2E2',
-  GREY_DARK_TEXT: '#8F8F8F',
-  GREEN_AFISHA: '#168D25',
-  GRAY_CYRCLE: '#A7A7A7',
-  GREY_DARK: '#8F8F8F',
-  PRIMARY_LIGHT: '#FFEDE0',
-  INCOME_COLOR: '#58BF68',
-  REFUND_COLOR: '#F87171',
-  GRAY: '#D9D9D9',
-  GRAY_INDICATOR: '#C9C9C9',
-  RED: '#FF0000',
-  NO_NAME_FFF6C7: '#FFF6C7',
-  NO_NAME_B58200: '#B58200',
-  GREEEN_STATUS: '#58BF68',
-  GRAY_BG: '#F1F1F1',
-  GREEN_LIGHT: '#D9F8DD',
-  GREEN_ORDER: '#428C4B',
-  RED_LIGHT: '#FFE3E3',
+  TEXT_TITLE: '#F5F7FF',
+  INACTIVE_TEXT: '#A8C9F0',
 };
 
 export const fonts = {
-  100: 'Onest-Thin',
-  300: 'Onest-Light',
-  400: 'Onest-Regular',
-  500: 'Onest-Medium',
-  700: 'Onest-Bold',
-  800: 'Onest-ExtraBold',
-  900: 'Onest-Black',
+  100: 'Mulish-Thin',
+  300: 'Mulish-Light',
+  400: 'Mulish-Regular',
+  500: 'Mulish-Medium',
+  700: 'Mulish-Bold',
+  800: 'Mulish-ExtraBold',
+  900: 'Mulish-Black',
 };
+
+export const normalize = (size: number): any => {
+  return size / PixelRatio.getFontScale();
+};
+export const stylesConst = StyleSheet.create({
+  shadow: {
+    elevation: 1,
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    shadowOffset: {
+      height: 0,
+      width: 0,
+    },
+  },
+  text_title_32_e: {
+    fontSize: normalize(32),
+    fontFamily: fonts[800],
+    color: colors.TEXT_TITLE,
+  },
+  text_14_r: {
+    fontSize: normalize(14),
+    fontFamily: fonts[500],
+    color: colors.INACTIVE_TEXT,
+  },
+  text_12_r: {
+    fontSize: normalize(12),
+    fontFamily: fonts[500],
+    color: colors.INACTIVE_TEXT,
+  },
+  text_18_e: {
+    fontSize: normalize(18),
+    fontFamily: fonts[800],
+    color: colors.TEXT_TITLE,
+  },
+});
