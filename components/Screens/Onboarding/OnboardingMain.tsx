@@ -7,7 +7,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import React, {useRef} from 'react';
+import React, {FC, useRef} from 'react';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 
 import {PaginationComponent} from './PaginationComponent';
@@ -16,9 +16,17 @@ import ProfileIcon from '../../../assets/icons/ProfileIcon';
 import CompanyIcon from '../../../assets/icons/CompanyIcon';
 import Button from '../../ui/Button';
 import {SwiperFlatListRefProps} from 'react-native-swiper-flatlist/src/components/SwiperFlatList/SwiperFlatListProps';
+import {ScreenProps} from '../../../models/Navigation';
 
-const OnboardingMain = () => {
+const OnboardingMain: FC<ScreenProps> = ({navigation}) => {
   const refSwiper = useRef<SwiperFlatListRefProps>(null);
+
+  const navToSignin = () => {
+    navigation.navigate('WebScreen');
+  };
+  const navToRegistration = () => {
+    navigation.navigate('WebScreen');
+  };
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -150,10 +158,15 @@ const OnboardingMain = () => {
               </Text>
             </View>
             <View style={styles.buttonsContainer}>
-              <Button value="Войти" style={stylesConst.buttonVar1Style} />
+              <Button
+                value="Войти"
+                style={stylesConst.buttonVar1Style}
+                onPress={navToSignin}
+              />
               <Button
                 value="Пройти регистрацию"
                 style={stylesConst.buttonVar2Style}
+                onPress={navToRegistration}
               />
             </View>
           </View>
@@ -176,7 +189,6 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 4,
     top: 26,
-
     width: '100%',
   },
   paginationStyleItem: {
