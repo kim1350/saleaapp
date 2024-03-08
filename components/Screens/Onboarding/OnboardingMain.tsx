@@ -7,7 +7,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useRef} from 'react';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 
 import {PaginationComponent} from './PaginationComponent';
@@ -15,16 +15,23 @@ import {colors, stylesConst} from '../../../constants';
 import ProfileIcon from '../../../assets/icons/ProfileIcon';
 import CompanyIcon from '../../../assets/icons/CompanyIcon';
 import Button from '../../ui/Button';
+import {SwiperFlatListRefProps} from 'react-native-swiper-flatlist/src/components/SwiperFlatList/SwiperFlatListProps';
 
 const OnboardingMain = () => {
+  const refSwiper = useRef<SwiperFlatListRefProps>(null);
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.profileStyle}>
+      <TouchableOpacity
+        style={styles.profileStyle}
+        onPress={() => {
+          refSwiper.current?.goToLastIndex();
+        }}>
         <ProfileIcon />
       </TouchableOpacity>
       <SwiperFlatList
         renderAll={true}
         showPagination
+        ref={refSwiper}
         paginationDefaultColor="rgba(255, 255, 255, 0.24)"
         paginationStyle={styles.paginationStyle}
         paginationStyleItem={styles.paginationStyleItem}
