@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   navbarBottom: {
     position: 'absolute',
-    bottom: 15,
+    bottom: 0,
     paddingBottom: 15,
     paddingHorizontal: 15,
   },

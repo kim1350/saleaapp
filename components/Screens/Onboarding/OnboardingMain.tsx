@@ -6,6 +6,7 @@ import {
   View,
   ImageBackground,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import React, {FC, useRef} from 'react';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
@@ -67,11 +68,33 @@ const OnboardingMain: FC<ScreenProps> = ({navigation}) => {
             <Text style={stylesConst.text_title_32_e}>22</Text>
             <Text style={stylesConst.text_12_r}>бесплатных инструмента</Text>
           </View>
+          <Image
+            source={require('../../../assets/robot1.png')}
+            style={{
+              position: 'absolute',
+              right: -4,
+              width: 172,
+              height: 265,
+
+              bottom: 92,
+            }}
+            resizeMode="contain"
+          />
         </ImageBackground>
         <ImageBackground
           source={require('../../../assets/welcome2.png')}
           imageStyle={styles.backgroundImageContainer}
           style={styles.child}>
+          <Image
+            source={require('../../../assets/robot2.png')}
+            style={{
+              position: 'absolute',
+
+              height: 265,
+              width: 44,
+              bottom: 92,
+            }}
+          />
           <View style={styles.textContainer}>
             <Text style={stylesConst.text_title_32_e}>
               Большой{'\n'}выбор{'\n'}инструментов
@@ -177,7 +200,7 @@ const OnboardingMain: FC<ScreenProps> = ({navigation}) => {
 };
 
 export default OnboardingMain;
-const {width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {flex: 1},
