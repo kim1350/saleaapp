@@ -44,6 +44,11 @@ export const stylesConst = StyleSheet.create({
     fontFamily: fonts[500],
     color: colors.INACTIVE_TEXT,
   },
+  text_11_b: {
+    fontSize: normalize(11),
+    fontFamily: fonts[700],
+    color: colors.TEXT_TITLE,
+  },
   text_18_e: {
     fontSize: normalize(18),
     fontFamily: fonts[800],
