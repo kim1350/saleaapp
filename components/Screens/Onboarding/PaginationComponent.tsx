@@ -6,6 +6,7 @@ import {
   horizontal,
   vertical,
 } from 'react-native-swiper-flatlist/src/themes';
+import {OnboardingNavbar} from './OnboardingNavbar';
 
 export const PaginationComponent: React.FC<PaginationProps> = ({
   size,
@@ -22,29 +23,38 @@ export const PaginationComponent: React.FC<PaginationProps> = ({
   e2eID = '',
 }) => {
   return (
-    <View style={[styles.container, paginationStyle]}>
-      {Array.from({length: size}).map((_, index) => (
-        <TouchableOpacity
-          testID={`${e2eID}_pagination_${index}`}
-          style={[
-            styles.pagination,
-            paginationStyleItem,
-            paginationIndex === index
-              ? {backgroundColor: paginationActiveColor}
-              : {backgroundColor: paginationDefaultColor},
-            paginationIndex === index
-              ? paginationStyleItemActive
-              : paginationStyleItemInactive,
-          ]}
-          key={index}
-          onPress={() => {
-            scrollToIndex({index});
-            onPaginationSelectedIndex?.();
-          }}
-          disabled={paginationTapDisabled}
+    <>
+      <View style={[styles.container, paginationStyle]}>
+        {Array.from({length: size}).map((_, index) => (
+          <TouchableOpacity
+            testID={`${e2eID}_pagination_${index}`}
+            style={[
+              styles.pagination,
+              paginationStyleItem,
+              paginationIndex === index
+                ? {backgroundColor: paginationActiveColor}
+                : {backgroundColor: paginationDefaultColor},
+              paginationIndex === index
+                ? paginationStyleItemActive
+                : paginationStyleItemInactive,
+            ]}
+            key={index}
+            onPress={() => {
+              scrollToIndex({index});
+              onPaginationSelectedIndex?.();
+            }}
+            disabled={paginationTapDisabled}
+          />
+        ))}
+      </View>
+      <View style={styles.navbarBottom}>
+        <OnboardingNavbar
+          scrollToIndex={scrollToIndex}
+          paginationIndex={paginationIndex}
+          onPaginationSelectedIndex={onPaginationSelectedIndex}
         />
-      ))}
-    </View>
+      </View>
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -61,5 +71,11 @@ const styles = StyleSheet.create({
     width: horizontal.small,
     height: horizontal.small,
     borderRadius: 40,
+  },
+  navbarBottom: {
+    position: 'absolute',
+    bottom: 15,
+    paddingBottom: 15,
+    paddingHorizontal: 15,
   },
 });
