@@ -2,6 +2,7 @@ import {PixelRatio, StyleSheet} from 'react-native';
 
 export const colors = {
   TEXT_TITLE: '#F5F7FF',
+  WHITE: '#FFFFFF',
   INACTIVE_TEXT: '#A8C9F0',
   GREEN: '#5EC76F',
 };
@@ -39,6 +40,11 @@ export const stylesConst = StyleSheet.create({
     fontFamily: fonts[500],
     color: colors.INACTIVE_TEXT,
   },
+  text_14_e: {
+    fontSize: normalize(14),
+    fontFamily: fonts[800],
+    color: colors.INACTIVE_TEXT,
+  },
   text_12_r: {
     fontSize: normalize(12),
     fontFamily: fonts[500],
@@ -53,5 +59,12 @@ export const stylesConst = StyleSheet.create({
     fontSize: normalize(18),
     fontFamily: fonts[800],
     color: colors.TEXT_TITLE,
+  },
+  buttonVar2Style: {
+    borderWidth: 1,
+    borderColor: colors.WHITE,
+  },
+  buttonVar1Style: {
+    backgroundColor: colors.GREEN,
   },
 });

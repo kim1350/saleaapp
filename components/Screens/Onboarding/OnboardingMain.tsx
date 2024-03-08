@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   Dimensions,
   StyleSheet,
@@ -13,6 +14,7 @@ import {PaginationComponent} from './PaginationComponent';
 import {colors, stylesConst} from '../../../constants';
 import ProfileIcon from '../../../assets/icons/ProfileIcon';
 import CompanyIcon from '../../../assets/icons/CompanyIcon';
+import Button from '../../ui/Button';
 
 const OnboardingMain = () => {
   return (
@@ -129,7 +131,7 @@ const OnboardingMain = () => {
           source={require('../../../assets/welcome7.png')}
           imageStyle={styles.backgroundImageContainer}
           style={styles.child}>
-          <View style={{paddingTop: 167, alignItems: 'center', gap: 16}}>
+          <View style={styles.signinScreenContainer}>
             <CompanyIcon />
             <View style={{marginTop: 63}}>
               <Text
@@ -139,6 +141,13 @@ const OnboardingMain = () => {
               <Text style={stylesConst.text_14_r}>
                 Вы можете войти в личный кабинет
               </Text>
+            </View>
+            <View style={styles.buttonsContainer}>
+              <Button value="Войти" style={stylesConst.buttonVar1Style} />
+              <Button
+                value="Пройти регистрацию"
+                style={stylesConst.buttonVar2Style}
+              />
             </View>
           </View>
         </ImageBackground>
@@ -199,5 +208,16 @@ const styles = StyleSheet.create({
   },
   containerAbsolute: {
     position: 'absolute',
+  },
+  buttonsContainer: {
+    paddingVertical: 10,
+    gap: 8,
+    width: '100%',
+    paddingHorizontal: 32,
+  },
+  signinScreenContainer: {
+    paddingTop: 167,
+    alignItems: 'center',
+    gap: 16,
   },
 });
