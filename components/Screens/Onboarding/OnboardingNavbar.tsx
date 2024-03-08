@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 
 import NavBarIcon1 from '../../../assets/icons/NavBarIcon1';
@@ -52,8 +52,13 @@ export const OnboardingNavbar: React.FC<NavBarType> = ({
   scrollToIndex,
   onPaginationSelectedIndex,
 }) => {
+  const ref = useRef<ScrollView>(null);
+  useEffect(() => {
+    ref.current?.scrollTo({x: 94 * paginationIndex, animated: true});
+  }, [paginationIndex]);
   return (
     <ScrollView
+      ref={ref}
       showsHorizontalScrollIndicator={false}
       horizontal
       contentContainerStyle={styles.contentContainer}>

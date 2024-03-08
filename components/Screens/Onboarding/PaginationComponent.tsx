@@ -41,6 +41,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({
             key={index}
             onPress={() => {
               scrollToIndex({index});
+
               onPaginationSelectedIndex?.();
             }}
             disabled={paginationTapDisabled}
