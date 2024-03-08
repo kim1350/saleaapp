@@ -4,25 +4,20 @@ import {
   Text,
   View,
   ImageBackground,
-  StatusBar,
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
-import MyStatusBar from '../../MyStatusBar';
+
 import {PaginationComponent} from './PaginationComponent';
 import {colors, stylesConst} from '../../../constants';
 import ProfileIcon from '../../../assets/icons/ProfileIcon';
-
-const STATUSBAR_HEIGHT = StatusBar.currentHeight;
+import CompanyIcon from '../../../assets/icons/CompanyIcon';
 
 const OnboardingMain = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.containerAbsolute}>
-        <MyStatusBar barStyleT="dark-content" colorStatus="transparent" />
-      </View>
-      <TouchableOpacity style={styles.prfileStyle}>
+      <TouchableOpacity style={styles.profileStyle}>
         <ProfileIcon />
       </TouchableOpacity>
       <SwiperFlatList
@@ -134,7 +129,18 @@ const OnboardingMain = () => {
           source={require('../../../assets/welcome7.png')}
           imageStyle={styles.backgroundImageContainer}
           style={styles.child}>
-          <Text>23</Text>
+          <View style={{paddingTop: 167, alignItems: 'center', gap: 16}}>
+            <CompanyIcon />
+            <View style={{marginTop: 63}}>
+              <Text
+                style={[stylesConst.text_title_32_e, {textAlign: 'center'}]}>
+                Добро{'\n'}пожаловать в Saleads.pro
+              </Text>
+              <Text style={stylesConst.text_14_r}>
+                Вы можете войти в личный кабинет
+              </Text>
+            </View>
+          </View>
         </ImageBackground>
       </SwiperFlatList>
     </View>
@@ -153,8 +159,8 @@ const styles = StyleSheet.create({
     paddingRight: 72,
     flex: 1,
     gap: 4,
-    top: STATUSBAR_HEIGHT,
-    marginTop: 26,
+    top: 26,
+
     width: '100%',
   },
   paginationStyleItem: {
@@ -173,11 +179,11 @@ const styles = StyleSheet.create({
     paddingLeft: 34,
     paddingRight: 45,
   },
-  prfileStyle: {
+  profileStyle: {
     position: 'absolute',
     right: 11,
     zIndex: 3,
-    top: STATUSBAR_HEIGHT,
+
     marginTop: 9,
     width: 40,
     height: 40,

@@ -1,11 +1,7 @@
 import {PaginationProps} from 'react-native-swiper-flatlist';
 import React from 'react';
 import {I18nManager, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {
-  colors,
-  horizontal,
-  vertical,
-} from 'react-native-swiper-flatlist/src/themes';
+import {colors, horizontal} from 'react-native-swiper-flatlist/src/themes';
 import {OnboardingNavbar} from './OnboardingNavbar';
 
 export const PaginationComponent: React.FC<PaginationProps> = ({
@@ -62,7 +58,6 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
-    marginVertical: vertical.xxSmall,
     justifyContent: 'center',
     alignSelf: 'center',
     bottom: 0,
