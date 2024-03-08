@@ -1,6 +1,6 @@
 import React from 'react';
-import {I18nManager, ScrollView, StyleSheet, View} from 'react-native';
-import {horizontal, vertical} from 'react-native-swiper-flatlist/src/themes';
+import {ScrollView, StyleSheet} from 'react-native';
+
 import NavBarIcon1 from '../../../assets/icons/NavBarIcon1';
 import NavBarIcon3 from '../../../assets/icons/NavBarIcon3';
 import NavBarIcon2 from '../../../assets/icons/NavBarIcon2';
@@ -56,7 +56,7 @@ export const OnboardingNavbar: React.FC<NavBarType> = ({
     <ScrollView
       showsHorizontalScrollIndicator={false}
       horizontal
-      contentContainerStyle={{flexDirection: 'row', gap: 4}}>
+      contentContainerStyle={styles.contentContainer}>
       {Data.map((item, index) => (
         <NavbarButton
           value={item.text}
@@ -80,7 +80,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
-  paginationStyleItemActive: {},
-  paginationStyleItemInactive: {},
+  contentContainer: {
+    flexDirection: 'row',
+    gap: 4,
+  },
+  paginationStyleItemActive: {
+    backgroundColor: 'rgba(79, 199, 98, 1)',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(156, 248, 123, 1)',
+  },
+  paginationStyleItemInactive: {
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.24)',
+  },
 });

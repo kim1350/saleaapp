@@ -38,8 +38,8 @@ const NavbarButton: FC<ButtonProps> = props => {
 
 const styles = StyleSheet.create({
   button: {
-    height: 90,
-    width: 70,
+    width: 90,
+    height: 70,
     justifyContent: 'center',
     alignItems: 'center',
   },
