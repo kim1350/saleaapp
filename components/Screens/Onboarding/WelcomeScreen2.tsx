@@ -4,12 +4,29 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
-  View,
 } from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
+import Animated, {
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 
-const WelcomeScreen2 = () => {
+const WelcomeScreen2: React.FC<{
+  animValue: SharedValue<number>;
+  index: number;
+}> = ({animValue, index}) => {
+  const rStyle = useAnimatedStyle(() => {
+    const inter = interpolate(
+      animValue.value,
+      [(index - 1) * width, index * width, (index + 1) * width],
+      [0, 1, 0],
+    );
+    return {
+      opacity: inter,
+    };
+  });
   return (
     <ImageBackground
       source={require('../../../assets/welcome2.png')}
@@ -19,14 +36,15 @@ const WelcomeScreen2 = () => {
         source={require('../../../assets/robot2.png')}
         style={styles.image}
       />
-      <View style={styles.textContainer}>
+
+      <Animated.View style={[styles.textContainer, rStyle]}>
         <Text style={stylesConst.text_title_32_e}>
           Большой{'\n'}выбор{'\n'}инструментов
         </Text>
         <Text style={stylesConst.text_14_r}>
           за счет своих встроенных алгоритмов они увеличат ваш заработок
         </Text>
-      </View>
+      </Animated.View>
     </ImageBackground>
   );
 };

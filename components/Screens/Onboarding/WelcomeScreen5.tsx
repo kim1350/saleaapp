@@ -1,20 +1,32 @@
-import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
+import Animated, {
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 
-const WelcomeScreen5 = () => {
+const WelcomeScreen5: React.FC<{
+  animValue: SharedValue<number>;
+  index: number;
+}> = ({animValue, index}) => {
+  const rStyle = useAnimatedStyle(() => {
+    const inter = interpolate(
+      animValue.value,
+      [(index - 1) * width, index * width, (index + 1) * width],
+      [0, 1, 0],
+    );
+    return {
+      opacity: inter,
+    };
+  });
   return (
     <ImageBackground
       source={require('../../../assets/welcome5.png')}
       imageStyle={styles.backgroundImageContainer}
       style={styles.child}>
-      <View style={styles.textContainer}>
+      <Animated.View style={[styles.textContainer, rStyle]}>
         <Text style={stylesConst.text_title_32_e}>
           Быстрая{'\n'}техподдержка
         </Text>
@@ -22,7 +34,7 @@ const WelcomeScreen5 = () => {
           оперативно решит любую вашу ситуацию, связанную с работой в
           Saleads.pro и найдет решение
         </Text>
-      </View>
+      </Animated.View>
     </ImageBackground>
   );
 };

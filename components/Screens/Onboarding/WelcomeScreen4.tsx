@@ -1,20 +1,32 @@
-import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
+import Animated, {
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 
-const WelcomeScreen4 = () => {
+const WelcomeScreen4: React.FC<{
+  animValue: SharedValue<number>;
+  index: number;
+}> = ({animValue, index}) => {
+  const rStyle = useAnimatedStyle(() => {
+    const inter = interpolate(
+      animValue.value,
+      [(index - 1) * width, index * width, (index + 1) * width],
+      [0, 1, 0],
+    );
+    return {
+      opacity: inter,
+    };
+  });
   return (
     <ImageBackground
       source={require('../../../assets/welcome4.png')}
       imageStyle={styles.backgroundImageContainer}
       style={styles.child}>
-      <View style={styles.textContainer}>
+      <Animated.View style={[styles.textContainer, rStyle]}>
         <Text style={stylesConst.text_title_32_e}>
           Моментальные{'\n'}выплаты
         </Text>
@@ -22,7 +34,7 @@ const WelcomeScreen4 = () => {
           на платежные реквизиты самозанятого, юр.лицо или рекламные кабинеты в
           течение 1-2 рабочих дней
         </Text>
-      </View>
+      </Animated.View>
     </ImageBackground>
   );
 };

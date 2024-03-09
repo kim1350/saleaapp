@@ -4,18 +4,36 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
-  View,
 } from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
+import Animated, {
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 
-const WelcomeScreen1 = () => {
+const {width} = Dimensions.get('window');
+const WelcomeScreen1: React.FC<{
+  animValue: SharedValue<number>;
+  index: number;
+}> = ({animValue, index}) => {
+  const rStyle = useAnimatedStyle(() => {
+    const inter = interpolate(
+      animValue.value,
+      [(index - 1) * width, index * width, (index + 1) * width],
+      [0, 1, 0],
+    );
+    return {
+      opacity: inter,
+    };
+  });
   return (
     <ImageBackground
       source={require('../../../assets/welcome1.png')}
       imageStyle={styles.backgroundImageContainer}
       style={styles.child}>
-      <View style={styles.textContainer}>
+      <Animated.View style={[styles.textContainer, rStyle]}>
         <Text style={stylesConst.text_title_32_e}>
           Saleads.pro мультисервисная CPA сеть
         </Text>
@@ -33,7 +51,8 @@ const WelcomeScreen1 = () => {
         </Text>
         <Text style={stylesConst.text_title_32_e}>22</Text>
         <Text style={stylesConst.text_12_r}>бесплатных инструмента</Text>
-      </View>
+      </Animated.View>
+
       <Image
         source={require('../../../assets/robot1.png')}
         style={styles.image}
@@ -42,7 +61,7 @@ const WelcomeScreen1 = () => {
     </ImageBackground>
   );
 };
-const {width} = Dimensions.get('window');
+
 export default WelcomeScreen1;
 
 const styles = StyleSheet.create({

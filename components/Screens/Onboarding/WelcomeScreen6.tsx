@@ -1,20 +1,32 @@
-import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
+import Animated, {
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 
-const WelcomeScreen6 = () => {
+const WelcomeScreen6: React.FC<{
+  animValue: SharedValue<number>;
+  index: number;
+}> = ({animValue, index}) => {
+  const rStyle = useAnimatedStyle(() => {
+    const inter = interpolate(
+      animValue.value,
+      [(index - 1) * width, index * width, (index + 1) * width],
+      [0, 1, 0],
+    );
+    return {
+      opacity: inter,
+    };
+  });
   return (
     <ImageBackground
       source={require('../../../assets/welcome6.png')}
       imageStyle={styles.backgroundImageContainer}
       style={styles.child}>
-      <View style={styles.textContainer}>
+      <Animated.View style={[styles.textContainer, rStyle]}>
         <Text style={stylesConst.text_title_32_e}>Офферы</Text>
         <Text style={styles.text_14_margin}>
           Финансы (Займы/Кредиты/Карты), РКО, HR-работа, Онлайн курсы,
@@ -27,7 +39,7 @@ const WelcomeScreen6 = () => {
         <Text style={stylesConst.text_12_r}>
           Россия, Казахстан, Беларусь, Узбекистан, Шри-Ланка, Вьетнам, Филиппины
         </Text>
-      </View>
+      </Animated.View>
     </ImageBackground>
   );
 };

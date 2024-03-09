@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   Dimensions,
   ImageBackground,
@@ -9,14 +10,32 @@ import React from 'react';
 import {colors, stylesConst} from '../../../constants';
 import Button from '../../ui/Button';
 import CompanyIcon from '../../../assets/icons/CompanyIcon';
+import Animated, {
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 
-const WelcomeScreen7 = () => {
+const WelcomeScreen7: React.FC<{
+  animValue: SharedValue<number>;
+  index: number;
+}> = ({animValue, index}) => {
+  const rStyle = useAnimatedStyle(() => {
+    const inter = interpolate(
+      animValue.value,
+      [(index - 1) * width, index * width, (index + 1) * width],
+      [0, 1, 0],
+    );
+    return {
+      opacity: inter,
+    };
+  });
   return (
     <ImageBackground
       source={require('../../../assets/welcome7.png')}
       imageStyle={styles.backgroundImageContainer}
       style={styles.child}>
-      <View style={styles.signinScreenContainer}>
+      <Animated.View style={[styles.signinScreenContainer, rStyle]}>
         <CompanyIcon />
         <View style={{marginTop: 63}}>
           <Text style={[stylesConst.text_title_32_e, {textAlign: 'center'}]}>
@@ -33,7 +52,7 @@ const WelcomeScreen7 = () => {
             style={stylesConst.buttonVar2Style}
           />
         </View>
-      </View>
+      </Animated.View>
     </ImageBackground>
   );
 };
