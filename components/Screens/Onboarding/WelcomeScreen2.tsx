@@ -4,6 +4,7 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
@@ -35,6 +36,7 @@ const WelcomeScreen2: React.FC<{
       <Image
         source={require('../../../assets/robot2.png')}
         style={styles.image}
+        resizeMode="contain"
       />
 
       <Animated.View style={[styles.textContainer, rStyle]}>
@@ -44,11 +46,33 @@ const WelcomeScreen2: React.FC<{
         <Text style={stylesConst.text_14_r}>
           за счет своих встроенных алгоритмов они увеличат ваш заработок
         </Text>
+        <View style={{position: 'absolute', flex: 1}}>
+          <Image
+            style={{
+              width: (width * 170) / 375,
+              top: (256 * height) / 670,
+              left: (56 * width) / 375,
+              position: 'absolute',
+            }}
+            source={require('../../../assets/analytics.png')}
+            resizeMode="contain"
+          />
+          <Image
+            style={{
+              width: (width * 179) / 375,
+              top: (307 * height) / 670,
+              left: (189 * width) / 375,
+              position: 'absolute',
+            }}
+            source={require('../../../assets/bot.png')}
+            resizeMode="contain"
+          />
+        </View>
       </Animated.View>
     </ImageBackground>
   );
 };
-const {width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 export default WelcomeScreen2;
 
 const styles = StyleSheet.create({
@@ -102,8 +126,8 @@ const styles = StyleSheet.create({
   },
   image: {
     position: 'absolute',
-    height: 265,
-    width: 44,
-    bottom: 92,
+    left: 0,
+    width: (51 * width) / 375,
+    bottom: 0,
   },
 });

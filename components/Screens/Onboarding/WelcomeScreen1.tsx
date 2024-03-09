@@ -58,6 +58,16 @@ const WelcomeScreen1: React.FC<{
         style={styles.image}
         resizeMode="contain"
       />
+
+      <Image
+        source={require('../../../assets/bottom1.png')}
+        style={{
+          position: 'absolute',
+          width: width,
+
+          height: '100%',
+        }}
+      />
     </ImageBackground>
   );
 };
@@ -113,9 +123,8 @@ const styles = StyleSheet.create({
   },
   image: {
     position: 'absolute',
-    right: -4,
-    width: 172,
-    height: 265,
-    bottom: 92,
+    right: 0,
+    width: (162 * width) / 375,
+    bottom: 0,
   },
 });
