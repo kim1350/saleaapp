@@ -4,10 +4,9 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
-  View,
 } from 'react-native';
 import React from 'react';
-import {colors, normalize, stylesConst} from '../../../constants';
+import {colors, stylesConst} from '../../../constants';
 import Animated, {
   SharedValue,
   interpolate,

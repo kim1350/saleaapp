@@ -5,6 +5,8 @@ export const colors = {
   WHITE: '#FFFFFF',
   INACTIVE_TEXT: '#A8C9F0',
   GREEN: '#5EC76F',
+  BLACK: '#000000',
+  INACTIVE_TEXT_2: '#767A98',
 };
 
 export const fonts = {
@@ -17,6 +19,15 @@ export const fonts = {
   900: 'Mulish-Black',
 };
 
+export const fonts2 = {
+  100: 'Inter-Thin',
+  300: 'Inter-Light',
+  400: 'Inter-Regular',
+  500: 'Inter-Medium',
+  700: 'Inter-Bold',
+  800: 'Inter-ExtraBold',
+  900: 'Inter-Black',
+};
 export const normalize = (size: number): any => {
   return size / PixelRatio.getFontScale();
 };
@@ -66,5 +77,20 @@ export const stylesConst = StyleSheet.create({
   },
   buttonVar1Style: {
     backgroundColor: colors.GREEN,
+  },
+  text_13_r_2: {
+    fontSize: normalize(13),
+    fontFamily: fonts2[400],
+    color: colors.BLACK,
+  },
+  text_9_r_2: {
+    fontSize: normalize(9),
+    fontFamily: fonts2[400],
+    color: colors.INACTIVE_TEXT_2,
+  },
+  text_16_r_2: {
+    fontSize: normalize(16),
+    fontFamily: fonts2[700],
+    color: colors.BLACK,
   },
 });

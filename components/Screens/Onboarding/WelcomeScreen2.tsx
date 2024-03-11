@@ -4,7 +4,6 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
-  View,
 } from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
@@ -29,24 +28,7 @@ const WelcomeScreen2: React.FC<{
       opacity: inter,
     };
   });
-  const yStyle = useAnimatedStyle(() => {
-    const inter = interpolate(
-      animValue.value,
-      [(index - 1) * width, index * width, (index + 1) * width],
-      [0, 1, 0],
-    );
 
-    const interY = interpolate(
-      animValue.value,
-      [(index - 1) * width, index * width, (index + 1) * width],
-      [1, 0, 1],
-    );
-
-    return {
-      transform: [{translateY: interY * -100}],
-      opacity: inter,
-    };
-  });
   return (
     <ImageBackground
       source={require('../../../assets/welcome2.png')}

@@ -4,6 +4,7 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
@@ -13,6 +14,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import {calculate} from '../../../functions';
+import MessageMoney from '../../../assets/icons/MessageMoney';
 
 const WelcomeScreen4: React.FC<{
   animValue: SharedValue<number>;
@@ -42,6 +44,20 @@ const WelcomeScreen4: React.FC<{
           течение 1-2 рабочих дней
         </Text>
       </Animated.View>
+
+      <Image
+        style={[
+          {
+            position: 'absolute',
+            height: calculate(196, 156).height,
+            zIndex: 3,
+            width: calculate(196, 156).width,
+            left: 26,
+            bottom: 245,
+          },
+        ]}
+        source={require('../../../assets/messageMoney.png')}
+      />
       <Image
         style={[
           {
