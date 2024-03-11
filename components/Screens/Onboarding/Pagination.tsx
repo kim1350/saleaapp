@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
   animContainer: {
     borderRadius: 40,
     flex: 1,
-    backgroundColor: colors.GREEN,
+    backgroundColor: colors.WHITE,
   },
 });
