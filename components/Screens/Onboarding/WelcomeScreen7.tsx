@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {
   Dimensions,
+  Image,
   ImageBackground,
   StyleSheet,
   Text,
@@ -53,10 +54,19 @@ const WelcomeScreen7: React.FC<{
           />
         </View>
       </Animated.View>
+      <Image
+        source={require('../../../assets/bottom7.png')}
+        style={{
+          width: width,
+          position: 'absolute',
+          height: (670 / 375) * width,
+          bottom: 0,
+        }}
+      />
     </ImageBackground>
   );
 };
-const {width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 export default WelcomeScreen7;
 
 const styles = StyleSheet.create({
@@ -118,7 +128,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
   },
   signinScreenContainer: {
-    paddingTop: 167,
+    position: 'absolute',
+    width: '100%',
+    bottom: (height * 135) / 670,
     alignItems: 'center',
     gap: 16,
   },

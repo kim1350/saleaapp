@@ -1,4 +1,10 @@
-import {Dimensions, ImageBackground, StyleSheet, Text} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
 import Animated, {
@@ -34,6 +40,15 @@ const WelcomeScreen3: React.FC<{
           с возможностью управления{'\n'}через бота в Telegram
         </Text>
       </Animated.View>
+      <Image
+        source={require('../../../assets/bottom3.png')}
+        style={{
+          width: width,
+          position: 'absolute',
+          height: (670 / 375) * width,
+          bottom: 0,
+        }}
+      />
     </ImageBackground>
   );
 };

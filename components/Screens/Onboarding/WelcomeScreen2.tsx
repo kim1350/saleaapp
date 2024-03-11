@@ -13,7 +13,7 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-
+const {width} = Dimensions.get('window');
 const WelcomeScreen2: React.FC<{
   animValue: SharedValue<number>;
   index: number;
@@ -28,16 +28,34 @@ const WelcomeScreen2: React.FC<{
       opacity: inter,
     };
   });
+  const yStyle = useAnimatedStyle(() => {
+    const inter = interpolate(
+      animValue.value,
+      [(index - 1) * width, index * width, (index + 1) * width],
+      [0, 1, 0],
+    );
+
+    const interY = interpolate(
+      animValue.value,
+      [(index - 1) * width, index * width, (index + 1) * width],
+      [1, 0, 1],
+    );
+
+    return {
+      transform: [{translateY: interY * -100}],
+      opacity: inter,
+    };
+  });
   return (
     <ImageBackground
       source={require('../../../assets/welcome2.png')}
       imageStyle={styles.backgroundImageContainer}
       style={styles.child}>
-      <Image
+      {/* <Image
         source={require('../../../assets/robot2.png')}
         style={styles.image}
         resizeMode="contain"
-      />
+      /> */}
 
       <Animated.View style={[styles.textContainer, rStyle]}>
         <Text style={stylesConst.text_title_32_e}>
@@ -46,33 +64,57 @@ const WelcomeScreen2: React.FC<{
         <Text style={stylesConst.text_14_r}>
           за счет своих встроенных алгоритмов они увеличат ваш заработок
         </Text>
-        <View style={{position: 'absolute', flex: 1}}>
-          <Image
-            style={{
-              width: (width * 170) / 375,
-              top: (256 * height) / 670,
-              left: (56 * width) / 375,
-              position: 'absolute',
-            }}
-            source={require('../../../assets/analytics.png')}
-            resizeMode="contain"
-          />
-          <Image
-            style={{
-              width: (width * 179) / 375,
-              top: (307 * height) / 670,
-              left: (189 * width) / 375,
-              position: 'absolute',
-            }}
-            source={require('../../../assets/bot.png')}
-            resizeMode="contain"
-          />
-        </View>
       </Animated.View>
+      <Animated.View
+        style={[
+          {
+            position: 'absolute',
+            height: (670 / 375) * width * 0.46,
+            zIndex: 3,
+            width: (312 * width) / 375,
+            left: 56,
+            bottom: 116,
+          },
+
+          rStyle,
+        ]}>
+        <Image
+          style={{height: '100%', width: '100%'}}
+          source={require('../../../assets/anal2.png')}
+        />
+      </Animated.View>
+      <Animated.View style={rStyle}>
+        <Image
+          style={[
+            {
+              position: 'absolute',
+              height: (670 / 375) * width * 0.12,
+              zIndex: 0,
+              width: (59 * width) / 375,
+              left: '40%',
+              bottom: 135,
+            },
+          ]}
+          resizeMode="contain"
+          resizeMethod="scale"
+          source={require('../../../assets/anal3.png')}
+        />
+      </Animated.View>
+
+      <Image
+        source={require('../../../assets/bottom2.png')}
+        style={{
+          width: width,
+          position: 'absolute',
+          height: (670 / 375) * width,
+          bottom: 0,
+          zIndex: 0,
+        }}
+      />
     </ImageBackground>
   );
 };
-const {width, height} = Dimensions.get('window');
+
 export default WelcomeScreen2;
 
 const styles = StyleSheet.create({
@@ -91,6 +133,7 @@ const styles = StyleSheet.create({
     paddingTop: 88,
     paddingLeft: 34,
     paddingRight: 45,
+    zIndex: 3,
   },
   profileStyle: {
     position: 'absolute',

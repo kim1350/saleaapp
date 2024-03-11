@@ -4,9 +4,10 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import React from 'react';
-import {colors, stylesConst} from '../../../constants';
+import {colors, normalize, stylesConst} from '../../../constants';
 import Animated, {
   SharedValue,
   interpolate,
@@ -47,25 +48,25 @@ const WelcomeScreen1: React.FC<{
           <Text style={stylesConst.text_title_32_e}>50 000</Text>
         </Text>
         <Text style={[stylesConst.text_12_r]}>
-          пользователей работают с нами
+          пользователей{'\n'}работают с нами
         </Text>
         <Text style={stylesConst.text_title_32_e}>22</Text>
-        <Text style={stylesConst.text_12_r}>бесплатных инструмента</Text>
+        <Text style={stylesConst.text_12_r}>бесплатных{'\n'}инструмента</Text>
       </Animated.View>
 
-      <Image
+      {/* <Image
         source={require('../../../assets/robot1.png')}
         style={styles.image}
-        resizeMode="contain"
-      />
+      /> */}
 
       <Image
         source={require('../../../assets/bottom1.png')}
         style={{
-          position: 'absolute',
           width: width,
-
-          height: '100%',
+          position: 'absolute',
+          height: (670 / 375) * width,
+          bottom: 0,
+          zIndex: 0,
         }}
       />
     </ImageBackground>
@@ -84,7 +85,8 @@ const styles = StyleSheet.create({
   },
 
   textContainer: {
-    flex: 1,
+    position: 'absolute',
+    zIndex: 3,
     gap: 16,
     paddingTop: 88,
     paddingLeft: 34,
@@ -122,9 +124,11 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   image: {
+    height: 265,
+    width: 216,
     position: 'absolute',
-    right: 0,
-    width: (162 * width) / 375,
-    bottom: 0,
+    bottom: 92,
+    right: -44,
+    zIndex: 3,
   },
 });

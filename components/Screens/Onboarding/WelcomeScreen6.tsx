@@ -1,4 +1,10 @@
-import {Dimensions, ImageBackground, StyleSheet, Text} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
 import Animated, {
@@ -40,6 +46,15 @@ const WelcomeScreen6: React.FC<{
           Россия, Казахстан, Беларусь, Узбекистан, Шри-Ланка, Вьетнам, Филиппины
         </Text>
       </Animated.View>
+      <Image
+        source={require('../../../assets/bottom6.png')}
+        style={{
+          width: width,
+          position: 'absolute',
+          height: (670 / 375) * width,
+          bottom: 0,
+        }}
+      />
     </ImageBackground>
   );
 };
