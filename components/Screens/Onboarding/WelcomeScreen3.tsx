@@ -12,6 +12,7 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {calculate} from '../../../functions';
 
 const WelcomeScreen3: React.FC<{
   animValue: SharedValue<number>;
@@ -41,12 +42,49 @@ const WelcomeScreen3: React.FC<{
         </Text>
       </Animated.View>
       <Image
+        style={[
+          {
+            position: 'absolute',
+            height: calculate(306, 326).height,
+            zIndex: 1,
+            width: calculate(306, 326).width,
+            right: 0,
+            bottom: 0,
+          },
+        ]}
+        source={require('../../../assets/phone2.png')}
+      />
+      <Image
+        style={[
+          {
+            position: 'absolute',
+            height: calculate(253, 463).height,
+            zIndex: 1,
+            width: calculate(253, 463).width,
+            right: -calculate(253, 463).width / 2,
+            bottom: 6,
+          },
+        ]}
+        source={require('../../../assets/phone1.png')}
+      />
+      <Image
+        source={require('../../../assets/bottom3_2.png')}
+        style={{
+          width: width,
+          position: 'absolute',
+          height: (670 / 375) * width,
+          bottom: 0,
+          zIndex: 0,
+        }}
+      />
+      <Image
         source={require('../../../assets/bottom3.png')}
         style={{
           width: width,
           position: 'absolute',
           height: (670 / 375) * width,
           bottom: 0,
+          zIndex: 1,
         }}
       />
     </ImageBackground>

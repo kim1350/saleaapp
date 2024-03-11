@@ -13,6 +13,7 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {calculate} from '../../../functions';
 const {width} = Dimensions.get('window');
 const WelcomeScreen2: React.FC<{
   animValue: SharedValue<number>;
@@ -69,9 +70,9 @@ const WelcomeScreen2: React.FC<{
         style={[
           {
             position: 'absolute',
-            height: (670 / 375) * width * 0.46,
+            height: calculate(312, 298).height,
             zIndex: 3,
-            width: (312 * width) / 375,
+            width: calculate(312, 298).width,
             left: 56,
             bottom: 116,
           },
@@ -88,11 +89,11 @@ const WelcomeScreen2: React.FC<{
           style={[
             {
               position: 'absolute',
-              height: (670 / 375) * width * 0.12,
+              height: calculate(59, 59).height,
               zIndex: 0,
-              width: (59 * width) / 375,
+              width: calculate(59, 59).width,
               left: '40%',
-              bottom: 135,
+              bottom: 148,
             },
           ]}
           resizeMode="contain"
