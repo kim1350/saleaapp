@@ -4,7 +4,6 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
-  View,
 } from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
@@ -14,7 +13,6 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import {calculate} from '../../../functions';
-import MessageMoney from '../../../assets/icons/MessageMoney';
 
 const WelcomeScreen4: React.FC<{
   animValue: SharedValue<number>;

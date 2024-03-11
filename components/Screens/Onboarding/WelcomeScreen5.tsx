@@ -4,6 +4,7 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
@@ -12,7 +13,6 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-
 const WelcomeScreen5: React.FC<{
   animValue: SharedValue<number>;
   index: number;
@@ -41,6 +41,26 @@ const WelcomeScreen5: React.FC<{
           Saleads.pro и найдет решение
         </Text>
       </Animated.View>
+
+      <View style={styles.container1}>
+        <Text style={stylesConst.text_11_b_2}>Команда Saleads</Text>
+        <Text style={stylesConst.text_13_r_2}>
+          Доброго дня! Чем я могу{'\n'}помочь?
+        </Text>
+        <Text style={stylesConst.text_10_r_2}>1 мин</Text>
+      </View>
+      <View style={styles.container2}>
+        <Text style={stylesConst.text_11_b_2}>Команда Saleads</Text>
+        <Text style={stylesConst.text_13_r_2}>
+          Я запросил выплату.{'\n'}Как скоро я получу деньги?
+        </Text>
+        <Text style={stylesConst.text_10_r_2}>1 мин</Text>
+      </View>
+      <View style={styles.container3}>
+        <Text style={stylesConst.text_11_b_2}>Команда Saleads</Text>
+        <Text style={stylesConst.text_13_r_2}>В течение 1 дня!</Text>
+        <Text style={stylesConst.text_10_r_2}>15 секунд</Text>
+      </View>
       <Image
         source={require('../../../assets/bottom5.png')}
         style={{
@@ -118,5 +138,42 @@ const styles = StyleSheet.create({
     paddingTop: 167,
     alignItems: 'center',
     gap: 16,
+  },
+  container1: {
+    backgroundColor: 'rgba(146, 253, 119, 0.26)',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.19)',
+    paddingVertical: 34,
+    paddingHorizontal: 21,
+    gap: 12,
+    left: 31,
+    bottom: (294 * (670 / 375) * width) / 670 + 10,
+    width: 214,
+  },
+  container2: {
+    position: 'absolute',
+    backgroundColor: 'rgba(152, 175, 255, 0.27)',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.19)',
+    paddingVertical: 34,
+    paddingHorizontal: 21,
+    gap: 12,
+    right: 24,
+    bottom: (196 * (670 / 375) * width) / 670 + 10,
+  },
+  container3: {
+    position: 'absolute',
+    backgroundColor: 'rgba(146, 253, 119, 0.26)',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.19)',
+    paddingVertical: 34,
+    paddingHorizontal: 21,
+    gap: 12,
+    width: 214,
+    left: 31,
+    bottom: (122 * (670 / 375) * width) / 670 + 10,
   },
 });
