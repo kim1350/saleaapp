@@ -1,5 +1,11 @@
-import {Dimensions, StyleSheet, View, TouchableOpacity} from 'react-native';
-import React, {FC} from 'react';
+import {
+  Dimensions,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {colors, stylesConst} from '../../../constants';
 import ProfileIcon from '../../../assets/icons/ProfileIcon';
 
@@ -18,25 +24,95 @@ import WelcomeScreen5 from './WelcomeScreen5';
 import WelcomeScreen4 from './WelcomeScreen4';
 import WelcomeScreen3 from './WelcomeScreen3';
 
+import NavbarButton from '../../ui/NavbarButton';
+import NavBarIcon1 from '../../../assets/icons/NavBarIcon1';
+import NavBarIcon2 from '../../../assets/icons/NavBarIcon2';
+import NavBarIcon3 from '../../../assets/icons/NavBarIcon3';
+import NavBarIcon4 from '../../../assets/icons/NavBarIcon4';
+import NavBarIcon5 from '../../../assets/icons/NavBarIcon5';
+import NavBarIcon6 from '../../../assets/icons/NavBarIcon6';
+import NavBarIcon7 from '../../../assets/icons/NavBarIcon7';
+
+const Data2 = [
+  {
+    icon: NavBarIcon1,
+    text: 'Saleads',
+  },
+  {
+    icon: NavBarIcon2,
+    text: 'Инструменты',
+  },
+  {
+    icon: NavBarIcon3,
+    text: 'Кабинет',
+  },
+  {
+    icon: NavBarIcon4,
+    text: 'Выплаты',
+  },
+  {
+    icon: NavBarIcon5,
+    text: 'Техроддержка',
+  },
+
+  {
+    icon: NavBarIcon6,
+    text: 'Офферы',
+  },
+  {
+    icon: NavBarIcon7,
+    text: 'Вход',
+  },
+];
+const Data = [
+  {Item: WelcomeScreen1},
+  {Item: WelcomeScreen2},
+  {Item: WelcomeScreen3},
+  {Item: WelcomeScreen4},
+  {Item: WelcomeScreen5},
+  {Item: WelcomeScreen6},
+  {Item: WelcomeScreen7},
+];
 const OnboardingMain: FC<ScreenProps> = () => {
-  const Data = [
-    {Item: WelcomeScreen1},
-    {Item: WelcomeScreen2},
-    {Item: WelcomeScreen3},
-    {Item: WelcomeScreen4},
-    {Item: WelcomeScreen5},
-    {Item: WelcomeScreen6},
-    {Item: WelcomeScreen7},
-  ];
+  const ref = useRef<ScrollView>(null);
+  const refScroll = useRef<Animated.ScrollView>(null);
+  const [pagination, setPagination] = useState(0);
 
   const translateX = useSharedValue(0);
-  const scrolLHandler = useAnimatedScrollHandler(event => {
+
+  const scrollHandler = useAnimatedScrollHandler(event => {
     translateX.value = event.contentOffset.x;
   });
 
+  const scrollHandler2 = (event: any) => {
+    const {contentOffset} = event.nativeEvent;
+
+    let currentIndex = contentOffset.x / width;
+    const remainder = currentIndex % 1;
+    if (remainder > 0.8) {
+      setPagination(Math.ceil(currentIndex));
+    } else {
+      setPagination(Math.floor(currentIndex));
+    }
+  };
+
+  function scrollToIndex(item: {index: number}): void {
+    refScroll.current?.scrollTo({x: item.index * width, y: 0, animated: true});
+    setPagination(item.index);
+  }
+
+  useEffect(() => {
+    ref.current?.scrollTo({x: pagination * 94, y: 0, animated: true});
+  }, [pagination]);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.profileStyle}>
+      <TouchableOpacity
+        style={styles.profileStyle}
+        onPress={() => {
+          refScroll.current?.scrollToEnd();
+          setPagination(6);
+        }}>
         <ProfileIcon />
       </TouchableOpacity>
 
@@ -52,7 +128,9 @@ const OnboardingMain: FC<ScreenProps> = () => {
       </View>
 
       <Animated.ScrollView
-        onScroll={scrolLHandler}
+        ref={refScroll}
+        onScroll={scrollHandler}
+        onMomentumScrollEnd={scrollHandler2}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}>
@@ -60,6 +138,30 @@ const OnboardingMain: FC<ScreenProps> = () => {
           <item.Item key={index} animValue={translateX} index={index} />
         ))}
       </Animated.ScrollView>
+
+      <View style={styles.navbarBottom}>
+        <ScrollView
+          ref={ref}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          contentContainerStyle={styles.contentContainer}>
+          {Data2.map((item, index) => (
+            <NavbarButton
+              value={item.text}
+              style={[
+                pagination === index
+                  ? styles.paginationStyleItemActive
+                  : styles.paginationStyleItemInactive,
+              ]}
+              icon={<item.icon />}
+              key={index}
+              onPress={() => {
+                scrollToIndex({index});
+              }}
+            />
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -129,5 +231,27 @@ const styles = StyleSheet.create({
     paddingTop: 167,
     alignItems: 'center',
     gap: 16,
+  },
+  navbarBottom: {
+    position: 'absolute',
+    bottom: 0,
+    paddingBottom: 15,
+    paddingHorizontal: 15,
+  },
+  contentContainer: {
+    flexDirection: 'row',
+    gap: 4,
+  },
+  paginationStyleItemActive: {
+    backgroundColor: 'rgba(79, 199, 98, 1)',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(156, 248, 123, 1)',
+  },
+  paginationStyleItemInactive: {
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.24)',
   },
 });

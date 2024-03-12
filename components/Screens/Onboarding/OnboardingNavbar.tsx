@@ -12,7 +12,6 @@ import NavbarButton from '../../ui/NavbarButton';
 interface NavBarType {
   paginationIndex: number;
   scrollToIndex: (item: {index: number}) => void;
-  onPaginationSelectedIndex: (() => void) | undefined;
 }
 
 const Data = [
@@ -50,12 +49,12 @@ const Data = [
 export const OnboardingNavbar: React.FC<NavBarType> = ({
   paginationIndex = 0,
   scrollToIndex,
-  onPaginationSelectedIndex,
 }) => {
   const ref = useRef<ScrollView>(null);
   useEffect(() => {
     ref.current?.scrollTo({x: 94 * paginationIndex, animated: true});
   }, [paginationIndex]);
+
   return (
     <ScrollView
       ref={ref}
@@ -74,7 +73,6 @@ export const OnboardingNavbar: React.FC<NavBarType> = ({
           key={index}
           onPress={() => {
             scrollToIndex({index});
-            onPaginationSelectedIndex?.();
           }}
         />
       ))}
