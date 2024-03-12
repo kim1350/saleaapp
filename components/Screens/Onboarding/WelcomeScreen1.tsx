@@ -13,7 +13,7 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import {scale, verticalScale} from '../../../utils/Adaptive';
+import {verticalScale} from '../../../utils/Adaptive';
 import {calculate} from '../../../functions';
 
 const {width} = Dimensions.get('window');

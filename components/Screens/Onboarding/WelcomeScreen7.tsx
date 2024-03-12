@@ -67,7 +67,7 @@ const WelcomeScreen7: React.FC<{
     </ImageBackground>
   );
 };
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 export default WelcomeScreen7;
 
 const styles = StyleSheet.create({
