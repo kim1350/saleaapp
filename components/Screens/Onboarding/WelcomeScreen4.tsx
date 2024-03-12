@@ -39,7 +39,7 @@ const WelcomeScreen4: React.FC<{
     if (pagination === index) {
       AnimatedRN.timing(opacityImage, {
         toValue: 1,
-        duration: 180,
+        duration: 280,
         useNativeDriver: true,
       }).start();
     } else {

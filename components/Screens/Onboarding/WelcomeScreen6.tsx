@@ -4,8 +4,9 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
+  Animated as AnimatedRN,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {colors, stylesConst} from '../../../constants';
 import Animated, {
   SharedValue,
@@ -18,7 +19,8 @@ import {calculate} from '../../../functions';
 const WelcomeScreen6: React.FC<{
   animValue: SharedValue<number>;
   index: number;
-}> = ({animValue, index}) => {
+  pagination: number;
+}> = ({animValue, index, pagination}) => {
   const rStyle = useAnimatedStyle(() => {
     const inter = interpolate(
       animValue.value,
@@ -29,6 +31,26 @@ const WelcomeScreen6: React.FC<{
       opacity: inter,
     };
   });
+
+  const transformY1 = new AnimatedRN.Value(0);
+
+  useEffect(() => {
+    if (pagination === index) {
+      AnimatedRN.timing(transformY1, {
+        toValue: -60,
+        duration: 600,
+        useNativeDriver: true,
+      }).start(() => {
+        AnimatedRN.timing(transformY1, {
+          toValue: 0,
+          duration: 600,
+          useNativeDriver: true,
+        }).start();
+      });
+    } else {
+      transformY1.setValue(0);
+    }
+  }, [pagination]);
   return (
     <ImageBackground
       source={require('../../../assets/welcome6.png')}
@@ -78,7 +100,7 @@ const WelcomeScreen6: React.FC<{
         resizeMode="contain"
         source={require('../../../assets/cardRectangle2.png')}
       />
-      <Image
+      <AnimatedRN.Image
         style={[
           {
             maxHeight: verticalScale(223),
@@ -88,6 +110,11 @@ const WelcomeScreen6: React.FC<{
             width: calculate(313, 223).width,
             alignSelf: 'center',
             bottom: 20,
+            transform: [
+              {
+                translateY: transformY1,
+              },
+            ],
           },
         ]}
         resizeMode="contain"
