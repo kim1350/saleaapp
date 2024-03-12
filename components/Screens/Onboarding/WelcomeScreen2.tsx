@@ -13,7 +13,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import {calculate} from '../../../functions';
-import {verticalScale} from '../../../utils/Adaptive';
+import {scale, verticalScale} from '../../../utils/Adaptive';
 const {width} = Dimensions.get('window');
 const WelcomeScreen2: React.FC<{
   animValue: SharedValue<number>;
@@ -93,7 +93,7 @@ const WelcomeScreen2: React.FC<{
             height: calculate(59, 59).height,
             zIndex: 0,
             width: calculate(59, 59).width,
-            top: 103,
+            bottom: scale(490),
             right: 0,
           },
           ,
