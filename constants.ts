@@ -65,6 +65,24 @@ export const stylesConst = StyleSheet.create({
     color: colors.INACTIVE_TEXT,
     lineHeight: normalize(12),
   },
+  text_12_e: {
+    fontSize: normalize(12),
+    fontFamily: fonts[800],
+    color: colors.WHITE,
+    lineHeight: normalize(12),
+  },
+  text_10_e: {
+    fontSize: normalize(10),
+    fontFamily: fonts[500],
+    color: colors.WHITE,
+    lineHeight: normalize(10),
+  },
+  text_10_b: {
+    fontSize: normalize(10),
+    fontFamily: fonts[900],
+    color: colors.WHITE,
+    lineHeight: normalize(10),
+  },
   text_11_b: {
     fontSize: normalize(11),
     fontFamily: fonts[700],

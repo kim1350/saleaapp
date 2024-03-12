@@ -85,6 +85,31 @@ const WelcomeScreen2: React.FC<{
           source={require('../../../assets/anal3.png')}
         />
       </Animated.View>
+      <Animated.View
+        style={[
+          {
+            maxHeight: verticalScale(59),
+            position: 'absolute',
+            height: calculate(59, 59).height,
+            zIndex: 0,
+            width: calculate(59, 59).width,
+            top: 103,
+            right: 0,
+          },
+          ,
+          rStyle,
+        ]}>
+        <Image
+          style={[
+            {
+              width: '100%',
+              height: '100%',
+            },
+          ]}
+          resizeMode="contain"
+          source={require('../../../assets/anal4.png')}
+        />
+      </Animated.View>
 
       <Image
         source={require('../../../assets/bottom2.png')}

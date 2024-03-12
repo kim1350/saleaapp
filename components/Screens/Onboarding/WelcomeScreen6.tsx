@@ -12,6 +12,8 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {verticalScale} from '../../../utils/Adaptive';
+import {calculate} from '../../../functions';
 
 const WelcomeScreen6: React.FC<{
   animValue: SharedValue<number>;
@@ -46,6 +48,51 @@ const WelcomeScreen6: React.FC<{
           Россия, Казахстан, Беларусь, Узбекистан, Шри-Ланка, Вьетнам, Филиппины
         </Text>
       </Animated.View>
+      <Image
+        style={[
+          {
+            maxHeight: verticalScale(224),
+            position: 'absolute',
+            height: calculate(268, 224).height,
+            zIndex: 0,
+            width: calculate(268, 224).width,
+            alignSelf: 'center',
+            bottom: 40,
+          },
+        ]}
+        resizeMode="contain"
+        source={require('../../../assets/cardRectangle3.png')}
+      />
+      <Image
+        style={[
+          {
+            maxHeight: verticalScale(236),
+            position: 'absolute',
+            height: calculate(287, 236).height,
+            zIndex: 0,
+            width: calculate(287, 236).width,
+            alignSelf: 'center',
+            bottom: 20,
+          },
+        ]}
+        resizeMode="contain"
+        source={require('../../../assets/cardRectangle2.png')}
+      />
+      <Image
+        style={[
+          {
+            maxHeight: verticalScale(223),
+            position: 'absolute',
+            height: calculate(313, 223).height,
+            zIndex: 0,
+            width: calculate(313, 223).width,
+            alignSelf: 'center',
+            bottom: 20,
+          },
+        ]}
+        resizeMode="contain"
+        source={require('../../../assets/cardRectangle.png')}
+      />
       <Image
         source={require('../../../assets/bottom6.png')}
         style={{
