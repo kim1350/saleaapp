@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Dimensions,
   Image,
   ImageBackground,
   StyleSheet,
   Text,
+  Animated as AnimatedRN,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {colors, stylesConst} from '../../../constants';
 import Animated, {
   SharedValue,
@@ -18,7 +20,8 @@ import {verticalScale} from '../../../utils/Adaptive';
 const WelcomeScreen4: React.FC<{
   animValue: SharedValue<number>;
   index: number;
-}> = ({animValue, index}) => {
+  pagination: number;
+}> = ({animValue, index, pagination}) => {
   const rStyle = useAnimatedStyle(() => {
     const inter = interpolate(
       animValue.value,
@@ -29,6 +32,21 @@ const WelcomeScreen4: React.FC<{
       opacity: inter,
     };
   });
+
+  const opacityImage = new AnimatedRN.Value(0);
+
+  useEffect(() => {
+    if (pagination === index) {
+      AnimatedRN.timing(opacityImage, {
+        toValue: 1,
+        duration: 180,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      opacityImage.setValue(0);
+    }
+  }, [pagination]);
+
   return (
     <ImageBackground
       source={require('../../../assets/welcome4.png')}
@@ -44,7 +62,7 @@ const WelcomeScreen4: React.FC<{
         </Text>
       </Animated.View>
 
-      <Image
+      <AnimatedRN.Image
         style={[
           {
             maxHeight: verticalScale(156),
@@ -54,6 +72,7 @@ const WelcomeScreen4: React.FC<{
             width: calculate(196, 156).width,
             left: 26,
             bottom: 245,
+            opacity: opacityImage,
           },
         ]}
         resizeMode="contain"

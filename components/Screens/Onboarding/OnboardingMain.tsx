@@ -135,7 +135,12 @@ const OnboardingMain: FC<ScreenProps> = () => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}>
         {Data.map((item, index) => (
-          <item.Item key={index} animValue={translateX} index={index} />
+          <item.Item
+            key={index}
+            animValue={translateX}
+            index={index}
+            pagination={pagination}
+          />
         ))}
       </Animated.ScrollView>
 
