@@ -13,6 +13,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import {calculate} from '../../../functions';
+import {verticalScale} from '../../../utils/Adaptive';
 const {width} = Dimensions.get('window');
 const WelcomeScreen2: React.FC<{
   animValue: SharedValue<number>;
@@ -51,6 +52,7 @@ const WelcomeScreen2: React.FC<{
       <Animated.View
         style={[
           {
+            maxHeight: verticalScale(298),
             position: 'absolute',
             height: calculate(312, 298).height,
             zIndex: 3,
@@ -58,11 +60,11 @@ const WelcomeScreen2: React.FC<{
             left: 56,
             bottom: 116,
           },
-
           rStyle,
         ]}>
         <Image
           style={{height: '100%', width: '100%'}}
+          resizeMode="contain"
           source={require('../../../assets/anal2.png')}
         />
       </Animated.View>
@@ -70,6 +72,7 @@ const WelcomeScreen2: React.FC<{
         <Image
           style={[
             {
+              maxHeight: verticalScale(59),
               position: 'absolute',
               height: calculate(59, 59).height,
               zIndex: 0,
@@ -79,7 +82,6 @@ const WelcomeScreen2: React.FC<{
             },
           ]}
           resizeMode="contain"
-          resizeMethod="scale"
           source={require('../../../assets/anal3.png')}
         />
       </Animated.View>

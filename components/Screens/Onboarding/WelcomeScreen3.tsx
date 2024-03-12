@@ -13,6 +13,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import {calculate} from '../../../functions';
+import {scale, verticalScale} from '../../../utils/Adaptive';
 
 const WelcomeScreen3: React.FC<{
   animValue: SharedValue<number>;
@@ -44,6 +45,7 @@ const WelcomeScreen3: React.FC<{
       <Image
         style={[
           {
+            maxHeight: verticalScale(326),
             position: 'absolute',
             height: calculate(306, 326).height,
             zIndex: 1,
@@ -52,19 +54,22 @@ const WelcomeScreen3: React.FC<{
             bottom: 0,
           },
         ]}
+        resizeMode="contain"
         source={require('../../../assets/phone2.png')}
       />
       <Image
         style={[
           {
             position: 'absolute',
-            height: calculate(253, 463).height,
+            maxHeight: verticalScale(463),
             zIndex: 1,
-            width: calculate(253, 463).width,
-            right: -calculate(253, 463).width / 2,
+            height: calculate(253, 463).height,
+            width: scale(253),
+            right: -calculate(253, 463).width / 2.5,
             bottom: 6,
           },
         ]}
+        resizeMode="contain"
         source={require('../../../assets/phone1.png')}
       />
       <Image

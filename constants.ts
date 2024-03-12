@@ -45,31 +45,37 @@ export const stylesConst = StyleSheet.create({
     fontSize: normalize(32),
     fontFamily: fonts[800],
     color: colors.TEXT_TITLE,
+    lineHeight: normalize(32),
   },
   text_14_r: {
     fontSize: normalize(14),
     fontFamily: fonts[500],
     color: colors.INACTIVE_TEXT,
+    lineHeight: normalize(14),
   },
   text_14_e: {
     fontSize: normalize(14),
     fontFamily: fonts[800],
     color: colors.INACTIVE_TEXT,
+    lineHeight: normalize(14),
   },
   text_12_r: {
     fontSize: normalize(12),
     fontFamily: fonts[500],
     color: colors.INACTIVE_TEXT,
+    lineHeight: normalize(12),
   },
   text_11_b: {
     fontSize: normalize(11),
     fontFamily: fonts[700],
     color: colors.TEXT_TITLE,
+    lineHeight: normalize(11),
   },
   text_18_e: {
     fontSize: normalize(18),
     fontFamily: fonts[800],
     color: colors.TEXT_TITLE,
+    lineHeight: normalize(18),
   },
   buttonVar2Style: {
     borderWidth: 1,
@@ -82,28 +88,31 @@ export const stylesConst = StyleSheet.create({
     fontSize: normalize(13),
     fontFamily: fonts2[400],
     color: colors.WHITE,
-    lineHeight: 13,
+
+    lineHeight: normalize(13),
   },
   text_11_b_2: {
     fontSize: normalize(11),
     fontFamily: fonts2[700],
     color: colors.WHITE,
-    lineHeight: 11,
+    lineHeight: normalize(11),
   },
   text_9_r_2: {
     fontSize: normalize(9),
     fontFamily: fonts2[400],
     color: colors.INACTIVE_TEXT_2,
+    lineHeight: normalize(9),
   },
   text_10_r_2: {
     fontSize: normalize(10),
     fontFamily: fonts2[400],
     color: colors.WHITE,
-    lineHeight: 10,
+    lineHeight: normalize(10),
   },
   text_16_r_2: {
     fontSize: normalize(16),
     fontFamily: fonts2[700],
     color: colors.BLACK,
+    lineHeight: normalize(16),
   },
 });

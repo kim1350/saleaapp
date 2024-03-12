@@ -16,6 +16,7 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {verticalScale} from '../../../utils/Adaptive';
 
 const WelcomeScreen7: React.FC<{
   animValue: SharedValue<number>;
@@ -38,7 +39,7 @@ const WelcomeScreen7: React.FC<{
       style={styles.child}>
       <Animated.View style={[styles.signinScreenContainer, rStyle]}>
         <CompanyIcon />
-        <View style={{marginTop: 63}}>
+        <View style={{marginTop: verticalScale(63), gap: 16}}>
           <Text style={[stylesConst.text_title_32_e, {textAlign: 'center'}]}>
             Добро{'\n'}пожаловать в Saleads.pro
           </Text>
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
   signinScreenContainer: {
     position: 'absolute',
     width: '100%',
-    bottom: (height * 135) / 670,
+    bottom: verticalScale(135),
     alignItems: 'center',
     gap: 16,
   },

@@ -4,6 +4,7 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import React from 'react';
 import {colors, stylesConst} from '../../../constants';
@@ -12,6 +13,8 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {scale, verticalScale} from '../../../utils/Adaptive';
+import {calculate} from '../../../functions';
 
 const {width} = Dimensions.get('window');
 const WelcomeScreen1: React.FC<{
@@ -41,11 +44,11 @@ const WelcomeScreen1: React.FC<{
           широким выбором офферов, включающая в себя множество встроенных
           бесплатных сервисов и инструментов для работы с трафиком.
         </Text>
-
-        <Text style={stylesConst.text_18_e}>
-          Более{'\n'}
+        <View>
+          <Text style={stylesConst.text_18_e}>Более</Text>
           <Text style={stylesConst.text_title_32_e}>50 000</Text>
-        </Text>
+        </View>
+
         <Text style={[stylesConst.text_12_r]}>
           пользователей{'\n'}работают с нами
         </Text>
@@ -53,10 +56,21 @@ const WelcomeScreen1: React.FC<{
         <Text style={stylesConst.text_12_r}>бесплатных{'\n'}инструмента</Text>
       </Animated.View>
 
-      {/* <Image
+      <Image
         source={require('../../../assets/robot1.png')}
-        style={styles.image}
-      /> */}
+        style={[
+          {
+            maxHeight: verticalScale(265),
+            position: 'absolute',
+            height: calculate(216, 265).height,
+            zIndex: 3,
+            width: calculate(216, 265).width,
+            right: -calculate(216, 265).width / 4,
+            bottom: 91,
+          },
+        ]}
+        resizeMode="contain"
+      />
 
       <Image
         source={require('../../../assets/bottom1.png')}
@@ -64,6 +78,7 @@ const WelcomeScreen1: React.FC<{
           width: width,
           position: 'absolute',
           height: (670 / 375) * width,
+
           bottom: 0,
           zIndex: 0,
         }}
