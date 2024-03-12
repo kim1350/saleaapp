@@ -1,12 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Dimensions,
   Image,
   ImageBackground,
   StyleSheet,
   Text,
-  View,
+  Animated as AnimatedRN,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {colors, stylesConst} from '../../../constants';
 import Animated, {
   SharedValue,
@@ -16,7 +17,8 @@ import Animated, {
 const WelcomeScreen5: React.FC<{
   animValue: SharedValue<number>;
   index: number;
-}> = ({animValue, index}) => {
+  pagination: number;
+}> = ({animValue, index, pagination}) => {
   const rStyle = useAnimatedStyle(() => {
     const inter = interpolate(
       animValue.value,
@@ -27,6 +29,55 @@ const WelcomeScreen5: React.FC<{
       opacity: inter,
     };
   });
+
+  const transformY1 = new AnimatedRN.Value(-40);
+  const transformY2 = new AnimatedRN.Value(-40);
+  const transformY3 = new AnimatedRN.Value(-40);
+  const opacity1 = new AnimatedRN.Value(0);
+  const opacity2 = new AnimatedRN.Value(0);
+  const opacity3 = new AnimatedRN.Value(0);
+  useEffect(() => {
+    if (pagination === index) {
+      AnimatedRN.timing(transformY1, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start(() => {
+        AnimatedRN.timing(transformY2, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start(() => {
+          AnimatedRN.timing(transformY3, {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: true,
+          }).start();
+        });
+      });
+      AnimatedRN.timing(opacity1, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start(() => {
+        AnimatedRN.timing(opacity2, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }).start(() => {
+          AnimatedRN.timing(opacity3, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: true,
+          }).start();
+        });
+      });
+    } else {
+      transformY1.setValue(-40);
+      transformY2.setValue(-40);
+      transformY3.setValue(-40);
+    }
+  }, [pagination]);
   return (
     <ImageBackground
       source={require('../../../assets/welcome5.png')}
@@ -42,25 +93,60 @@ const WelcomeScreen5: React.FC<{
         </Text>
       </Animated.View>
 
-      <View style={styles.container1}>
+      <AnimatedRN.View
+        style={[
+          styles.container1,
+          {
+            transform: [
+              {
+                translateY: transformY1,
+              },
+            ],
+            opacity: opacity1,
+          },
+        ]}>
         <Text style={stylesConst.text_11_b_2}>Команда Saleads</Text>
         <Text style={stylesConst.text_13_r_2}>
           Доброго дня! Чем я могу{'\n'}помочь?
         </Text>
         <Text style={stylesConst.text_10_r_2}>1 мин</Text>
-      </View>
-      <View style={styles.container2}>
+      </AnimatedRN.View>
+
+      <AnimatedRN.View
+        style={[
+          styles.container2,
+          {
+            transform: [
+              {
+                translateY: transformY2,
+              },
+            ],
+            opacity: opacity2,
+          },
+        ]}>
         <Text style={stylesConst.text_11_b_2}>Команда Saleads</Text>
         <Text style={stylesConst.text_13_r_2}>
           Я запросил выплату.{'\n'}Как скоро я получу деньги?
         </Text>
         <Text style={stylesConst.text_10_r_2}>1 мин</Text>
-      </View>
-      <View style={styles.container3}>
+      </AnimatedRN.View>
+
+      <AnimatedRN.View
+        style={[
+          styles.container3,
+          {
+            transform: [
+              {
+                translateY: transformY3,
+              },
+            ],
+            opacity: opacity3,
+          },
+        ]}>
         <Text style={stylesConst.text_11_b_2}>Команда Saleads</Text>
         <Text style={stylesConst.text_13_r_2}>В течение 1 дня!</Text>
         <Text style={stylesConst.text_10_r_2}>15 секунд</Text>
-      </View>
+      </AnimatedRN.View>
       <Image
         source={require('../../../assets/bottom5.png')}
         style={{
