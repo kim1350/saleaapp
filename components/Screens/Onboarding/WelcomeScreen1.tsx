@@ -58,30 +58,13 @@ const WelcomeScreen1: React.FC<{
 
       <Image
         source={require('../../../assets/robot1.png')}
-        style={[
-          {
-            maxHeight: verticalScale(265),
-            position: 'absolute',
-            height: calculate(216, 265).height,
-            zIndex: 3,
-            width: calculate(216, 265).width,
-            right: -calculate(216, 265).width / 4,
-            bottom: 91,
-          },
-        ]}
+        style={styles.img1}
         resizeMode="contain"
       />
 
       <Image
         source={require('../../../assets/bottom1.png')}
-        style={{
-          width: width,
-          position: 'absolute',
-          height: (670 / 375) * width,
-
-          bottom: 0,
-          zIndex: 0,
-        }}
+        style={styles.img2}
       />
     </ImageBackground>
   );
@@ -144,5 +127,22 @@ const styles = StyleSheet.create({
     bottom: 92,
     right: -44,
     zIndex: 3,
+  },
+  img1: {
+    maxHeight: verticalScale(265),
+    position: 'absolute',
+    height: calculate(216, 265).height,
+    zIndex: 3,
+    width: calculate(216, 265).width,
+    right: -calculate(216, 265).width / 4,
+    bottom: 91,
+  },
+  img2: {
+    width: width,
+    position: 'absolute',
+    height: (670 / 375) * width,
+
+    bottom: 0,
+    zIndex: 0,
   },
 });

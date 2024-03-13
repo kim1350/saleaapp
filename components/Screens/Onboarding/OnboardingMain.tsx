@@ -32,6 +32,7 @@ import NavBarIcon4 from '../../../assets/icons/NavBarIcon4';
 import NavBarIcon5 from '../../../assets/icons/NavBarIcon5';
 import NavBarIcon6 from '../../../assets/icons/NavBarIcon6';
 import NavBarIcon7 from '../../../assets/icons/NavBarIcon7';
+import MyStatusBar from '../../MyStatusBar';
 
 const Data2 = [
   {
@@ -106,66 +107,69 @@ const OnboardingMain: FC<ScreenProps> = () => {
   }, [pagination]);
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.profileStyle}
-        onPress={() => {
-          refScroll.current?.scrollToEnd();
-          setPagination(6);
-        }}>
-        <ProfileIcon />
-      </TouchableOpacity>
+    <View style={{flex: 1}}>
+      <MyStatusBar barStyleT="light-content" colorStatus="#143976" />
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.profileStyle}
+          onPress={() => {
+            refScroll.current?.scrollToEnd();
+            setPagination(6);
+          }}>
+          <ProfileIcon />
+        </TouchableOpacity>
 
-      <View style={styles.paginationStyle}>
-        {Array.from({length: 7}).map((_, index) => (
-          <Pagination
-            key={index}
-            animValue={translateX}
-            index={index}
-            length={7}
-          />
-        ))}
-      </View>
-
-      <Animated.ScrollView
-        ref={refScroll}
-        onScroll={scrollHandler}
-        onMomentumScrollEnd={scrollHandler2}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}>
-        {Data.map((item, index) => (
-          <item.Item
-            key={index}
-            animValue={translateX}
-            index={index}
-            pagination={pagination}
-          />
-        ))}
-      </Animated.ScrollView>
-
-      <View style={styles.navbarBottom}>
-        <ScrollView
-          ref={ref}
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          contentContainerStyle={styles.contentContainer}>
-          {Data2.map((item, index) => (
-            <NavbarButton
-              value={item.text}
-              style={[
-                pagination === index
-                  ? styles.paginationStyleItemActive
-                  : styles.paginationStyleItemInactive,
-              ]}
-              icon={<item.icon />}
+        <View style={styles.paginationStyle}>
+          {Array.from({length: 7}).map((_, index) => (
+            <Pagination
               key={index}
-              onPress={() => {
-                scrollToIndex({index});
-              }}
+              animValue={translateX}
+              index={index}
+              length={7}
             />
           ))}
-        </ScrollView>
+        </View>
+
+        <Animated.ScrollView
+          ref={refScroll}
+          onScroll={scrollHandler}
+          onMomentumScrollEnd={scrollHandler2}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}>
+          {Data.map((item, index) => (
+            <item.Item
+              key={index}
+              animValue={translateX}
+              index={index}
+              pagination={pagination}
+            />
+          ))}
+        </Animated.ScrollView>
+
+        <View style={styles.navbarBottom}>
+          <ScrollView
+            ref={ref}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            contentContainerStyle={styles.contentContainer}>
+            {Data2.map((item, index) => (
+              <NavbarButton
+                value={item.text}
+                style={[
+                  pagination === index
+                    ? styles.paginationStyleItemActive
+                    : styles.paginationStyleItemInactive,
+                ]}
+                icon={<item.icon />}
+                key={index}
+                onPress={() => {
+                  scrollToIndex({index});
+                }}
+              />
+            ))}
+          </ScrollView>
+        </View>
       </View>
     </View>
   );

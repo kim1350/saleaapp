@@ -35,12 +35,6 @@ const WelcomeScreen2: React.FC<{
       source={require('../../../assets/welcome2.png')}
       imageStyle={styles.backgroundImageContainer}
       style={styles.child}>
-      {/* <Image
-        source={require('../../../assets/robot2.png')}
-        style={styles.image}
-        resizeMode="contain"
-      /> */}
-
       <Animated.View style={[styles.textContainer, rStyle]}>
         <Text style={stylesConst.text_title_32_e}>
           Большой{'\n'}выбор{'\n'}инструментов
@@ -49,19 +43,7 @@ const WelcomeScreen2: React.FC<{
           за счет своих встроенных алгоритмов они увеличат ваш заработок
         </Text>
       </Animated.View>
-      <Animated.View
-        style={[
-          {
-            maxHeight: verticalScale(298),
-            position: 'absolute',
-            height: calculate(312, 298).height,
-            zIndex: 3,
-            width: calculate(312, 298).width,
-            left: 56,
-            bottom: 116,
-          },
-          rStyle,
-        ]}>
+      <Animated.View style={[styles.animContainer1, rStyle]}>
         <Image
           style={{height: '100%', width: '100%'}}
           resizeMode="contain"
@@ -70,35 +52,12 @@ const WelcomeScreen2: React.FC<{
       </Animated.View>
       <Animated.View style={rStyle}>
         <Image
-          style={[
-            {
-              maxHeight: verticalScale(59),
-              position: 'absolute',
-              height: calculate(59, 59).height,
-              zIndex: 0,
-              width: calculate(59, 59).width,
-              left: '40%',
-              bottom: 148,
-            },
-          ]}
+          style={[styles.animImage1]}
           resizeMode="contain"
           source={require('../../../assets/anal3.png')}
         />
       </Animated.View>
-      <Animated.View
-        style={[
-          {
-            maxHeight: verticalScale(59),
-            position: 'absolute',
-            height: calculate(59, 59).height,
-            zIndex: 0,
-            width: calculate(59, 59).width,
-            bottom: scale(490),
-            right: 0,
-          },
-          ,
-          rStyle,
-        ]}>
+      <Animated.View style={[styles.animContainer2, rStyle]}>
         <Image
           style={[
             {
@@ -113,13 +72,7 @@ const WelcomeScreen2: React.FC<{
 
       <Image
         source={require('../../../assets/bottom2.png')}
-        style={{
-          width: width,
-          position: 'absolute',
-          height: (670 / 375) * width,
-          bottom: 0,
-          zIndex: 0,
-        }}
+        style={styles.bottomImage}
       />
     </ImageBackground>
   );
@@ -182,5 +135,39 @@ const styles = StyleSheet.create({
     left: 0,
     width: (51 * width) / 375,
     bottom: 0,
+  },
+  bottomImage: {
+    width: width,
+    position: 'absolute',
+    height: (670 / 375) * width,
+    bottom: 0,
+    zIndex: 0,
+  },
+  animContainer1: {
+    maxHeight: verticalScale(298),
+    position: 'absolute',
+    height: calculate(312, 298).height,
+    zIndex: 3,
+    width: calculate(312, 298).width,
+    left: 56,
+    bottom: 116,
+  },
+  animImage1: {
+    maxHeight: verticalScale(59),
+    position: 'absolute',
+    height: calculate(59, 59).height,
+    zIndex: 0,
+    width: calculate(59, 59).width,
+    left: '40%',
+    bottom: 148,
+  },
+  animContainer2: {
+    maxHeight: verticalScale(59),
+    position: 'absolute',
+    height: calculate(59, 59).height,
+    zIndex: 0,
+    width: calculate(59, 59).width,
+    bottom: scale(490),
+    right: 0,
   },
 });
