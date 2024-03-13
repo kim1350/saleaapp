@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 const MainStack = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      {/* <Stack.Screen name="SplashScreen" component={SplashScreen} /> */}
       <Stack.Screen name="Onboarding" component={OnboardingMain} />
       <Stack.Screen name="WebScreen" component={WebScreen} />
     </Stack.Navigator>
