@@ -4,11 +4,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import OnboardingMain from '../Screens/Onboarding/OnboardingMain';
 import WebScreen from '../WebScreen';
+import SplashScreen from '../Screens/SplashScreen';
 const Stack = createStackNavigator();
 
 const MainStack = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="Onboarding" component={OnboardingMain} />
       <Stack.Screen name="WebScreen" component={WebScreen} />
     </Stack.Navigator>
