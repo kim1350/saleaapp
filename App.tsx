@@ -15,7 +15,10 @@ import SplashScreen from 'react-native-splash-screen';
 
 function App(): JSX.Element {
   useEffect(() => {
-    setTimeout(() => SplashScreen.hide(), 1000);
+    let timer = setTimeout(() => SplashScreen.hide(), 1000);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
   return (
     <View style={{flex: 1}}>
