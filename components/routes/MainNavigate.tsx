@@ -4,7 +4,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import OnboardingMain from '../Screens/Onboarding/OnboardingMain';
 import WebScreen from '../WebScreen';
-import SplashScreen from '../Screens/SplashScreen';
 const Stack = createStackNavigator();
 
 const MainStack = () => {
