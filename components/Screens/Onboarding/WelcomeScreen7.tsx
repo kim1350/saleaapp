@@ -16,11 +16,13 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import {verticalScale} from '../../../utils/Adaptive';
+import {useNavigation} from '../../../hooks/hooks';
 
 const WelcomeScreen7: React.FC<{
   animValue: SharedValue<number>;
   index: number;
 }> = ({animValue, index}) => {
+  const navigation = useNavigation();
   const rStyle = useAnimatedStyle(() => {
     const inter = interpolate(
       animValue.value,
@@ -31,6 +33,11 @@ const WelcomeScreen7: React.FC<{
       opacity: inter,
     };
   });
+
+  const onNavToSignin = () => {
+    navigation.navigate('WebScreen');
+  };
+
   return (
     <ImageBackground
       source={require('../../../assets/welcome7.png')}
@@ -46,14 +53,18 @@ const WelcomeScreen7: React.FC<{
             Вы можете войти в личный кабинет
           </Text>
         </View>
-        <View style={styles.buttonsContainer}>
-          <Button value="Войти" style={stylesConst.buttonVar1Style} />
-          <Button
-            value="Пройти регистрацию"
-            style={stylesConst.buttonVar2Style}
-          />
-        </View>
       </Animated.View>
+      <View style={styles.buttonsContainer}>
+        <Button
+          value="Войти"
+          style={stylesConst.buttonVar1Style}
+          onPress={onNavToSignin}
+        />
+        <Button
+          value="Пройти регистрацию"
+          style={stylesConst.buttonVar2Style}
+        />
+      </View>
       <Image
         source={require('../../../assets/bottom7.png')}
         style={{
@@ -122,7 +133,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   buttonsContainer: {
+    position: 'absolute',
     paddingVertical: 10,
+    bottom: verticalScale(132),
     gap: 8,
     width: '100%',
     paddingHorizontal: 32,
@@ -130,7 +143,7 @@ const styles = StyleSheet.create({
   signinScreenContainer: {
     position: 'absolute',
     width: '100%',
-    bottom: verticalScale(135),
+    bottom: verticalScale(264),
     alignItems: 'center',
     gap: 16,
   },

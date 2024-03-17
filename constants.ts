@@ -97,9 +97,11 @@ export const stylesConst = StyleSheet.create({
   },
   buttonVar2Style: {
     borderWidth: 1,
+    zIndex: 4,
     borderColor: colors.WHITE,
   },
   buttonVar1Style: {
+    zIndex: 4,
     backgroundColor: colors.GREEN,
   },
   text_13_r_2: {
