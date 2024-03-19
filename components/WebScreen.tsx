@@ -8,7 +8,7 @@ import {WebScreenProps} from './routes/MainNavigate';
 const types = {
   signin: 'https://saleads.pro/login?mobile=1',
   registartion: 'https://saleads.pro/register?mobile=1',
-  token: 'https://saleads.pro/lk/company/dashboard',
+  token: 'https://saleads.pro/lk/webmaster/dashboard',
 };
 
 const WebScreen: FC<WebScreenProps> = ({route}) => {
