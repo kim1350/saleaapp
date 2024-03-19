@@ -28,9 +28,11 @@ export const fonts2 = {
   800: 'Inter-ExtraBold',
   900: 'Inter-Black',
 };
+
 export const normalize = (size: number): any => {
   return size / PixelRatio.getFontScale();
 };
+
 export const stylesConst = StyleSheet.create({
   shadow: {
     elevation: 1,

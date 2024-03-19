@@ -35,9 +35,11 @@ const WelcomeScreen7: React.FC<{
   });
 
   const onNavToSignin = () => {
-    navigation.navigate('WebScreen');
+    navigation.navigate('WebScreen', {type: 'signin'});
   };
-
+  const onNavToRegistration = () => {
+    navigation.navigate('WebScreen', {type: 'registartion'});
+  };
   return (
     <ImageBackground
       source={require('../../../assets/welcome7.png')}
@@ -63,6 +65,7 @@ const WelcomeScreen7: React.FC<{
         <Button
           value="Пройти регистрацию"
           style={stylesConst.buttonVar2Style}
+          onPress={onNavToRegistration}
         />
       </View>
       <Image

@@ -9,7 +9,6 @@ import {
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {colors, stylesConst} from '../../../constants';
 import ProfileIcon from '../../../assets/icons/ProfileIcon';
-import {ScreenProps} from '../../../models/Navigation';
 import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
@@ -32,6 +31,7 @@ import NavBarIcon5 from '../../../assets/icons/NavBarIcon5';
 import NavBarIcon6 from '../../../assets/icons/NavBarIcon6';
 import NavBarIcon7 from '../../../assets/icons/NavBarIcon7';
 import MyStatusBar from '../../MyStatusBar';
+import {OnboardingProps} from '../../routes/MainNavigate';
 
 const Data2 = [
   {
@@ -73,7 +73,7 @@ const Data = [
   {Item: WelcomeScreen6},
   {Item: WelcomeScreen7},
 ];
-const OnboardingMain: FC<ScreenProps> = () => {
+const OnboardingMain: FC<OnboardingProps> = () => {
   const ref = useRef<ScrollView>(null);
   const refScroll = useRef<Animated.ScrollView>(null);
   const [pagination, setPagination] = useState(0);
