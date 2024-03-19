@@ -148,7 +148,8 @@ const OnboardingMain: FC<OnboardingProps> = () => {
           ))}
         </Animated.ScrollView>
 
-        <View style={{...styles.navbarBottom, paddingBottom: insets.bottom}}>
+        <View
+          style={{...styles.navbarBottom, paddingBottom: 15 + insets.bottom}}>
           <ScrollView
             ref={ref}
             showsHorizontalScrollIndicator={false}
@@ -244,7 +245,6 @@ const styles = StyleSheet.create({
   navbarBottom: {
     position: 'absolute',
     bottom: 0,
-    paddingBottom: 15,
     paddingHorizontal: 15,
   },
   contentContainer: {
