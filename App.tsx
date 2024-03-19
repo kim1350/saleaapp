@@ -9,8 +9,7 @@ import React, {useEffect} from 'react';
 
 import MainNavigate from './components/routes/MainNavigate';
 import {View} from 'react-native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+
 import SplashScreen from 'react-native-splash-screen';
 
 function App(): JSX.Element {
@@ -19,11 +18,7 @@ function App(): JSX.Element {
   }, []);
   return (
     <View style={{flex: 1}}>
-      <SafeAreaProvider>
-        <GestureHandlerRootView style={{flex: 1}}>
-          <MainNavigate />
-        </GestureHandlerRootView>
-      </SafeAreaProvider>
+      <MainNavigate />
     </View>
   );
 }
