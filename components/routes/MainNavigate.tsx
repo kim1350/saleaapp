@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {createStackNavigator, StackScreenProps} from '@react-navigation/stack';
 import OnboardingMain from '../Screens/Onboarding/OnboardingMain';
 import WebScreen from '../WebScreen';
-import CookieManager from '@react-native-cookies/cookies';
+
 import SplashScreen from '../Screens/SplashScreen';
 
 type RootStackParamList = {
@@ -17,27 +17,20 @@ export type OnboardingProps = StackScreenProps<
   RootStackParamList,
   'Onboarding'
 >;
+export type SplashScreenProps = StackScreenProps<
+  RootStackParamList,
+  'SplashScreen'
+>;
 const Stack = createStackNavigator<RootStackParamList>();
 
 const MainStack = () => {
-  const [loadToken, setLoadToken] = useState(true);
-  const checkToken = async () => {
-    await CookieManager.get('https://saleads.pro')
-      .then(res => {
-        if (res?.laravel_session) {
-          setLoadToken(false);
-        }
-      })
-      .catch(() => {
-        setLoadToken(false);
-      });
-  };
-  useEffect(() => {
-    checkToken();
-  }, []);
-
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        animationEnabled: true,
+        presentation: 'transparentModal',
+      }}>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="Onboarding" component={OnboardingMain} />
 

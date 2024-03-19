@@ -6,12 +6,34 @@ import {
   StatusBar,
   ImageBackground,
 } from 'react-native';
-import React from 'react';
+import React, {FC, useEffect} from 'react';
 
 import {colors, normalize} from '../../constants';
 import {scale} from '../../utils/Adaptive';
+import {SplashScreenProps} from '../routes/MainNavigate';
+import CookieManager from '@react-native-cookies/cookies';
 
-const SplashScreen = () => {
+const SplashScreen: FC<SplashScreenProps> = ({navigation}) => {
+  const checkToken = async () => {
+    await CookieManager.get('https://saleads.pro')
+      .then(res => {
+        if (res?.laravel_session) {
+          setTimeout(
+            () => navigation.replace('WebScreen', {type: 'token'}),
+            800,
+          );
+        } else {
+          setTimeout(() => navigation.replace('Onboarding'), 800);
+        }
+      })
+      .catch(() => {
+        setTimeout(() => navigation.replace('Onboarding'), 800);
+      });
+  };
+  useEffect(() => {
+    checkToken();
+  }, []);
+
   return (
     <View style={styles.container}>
       <ImageBackground
