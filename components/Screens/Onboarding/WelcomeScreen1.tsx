@@ -57,12 +57,6 @@ const WelcomeScreen1: React.FC<{
       </Animated.View>
 
       <Image
-        source={require('../../../assets/robot1.png')}
-        style={styles.img1}
-        resizeMode="contain"
-      />
-
-      <Image
         source={require('../../../assets/bottom1.png')}
         style={styles.img2}
       />

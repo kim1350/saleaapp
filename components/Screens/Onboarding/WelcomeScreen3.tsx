@@ -12,8 +12,6 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import {calculate} from '../../../functions';
-import {scale, verticalScale} from '../../../utils/Adaptive';
 
 const WelcomeScreen3: React.FC<{
   animValue: SharedValue<number>;
@@ -42,36 +40,7 @@ const WelcomeScreen3: React.FC<{
           с возможностью управления{'\n'}через бота в Telegram
         </Text>
       </Animated.View>
-      <Image
-        style={[
-          {
-            maxHeight: verticalScale(326),
-            position: 'absolute',
-            height: calculate(306, 326).height,
-            zIndex: 1,
-            width: calculate(306, 326).width,
-            right: 0,
-            bottom: 0,
-          },
-        ]}
-        resizeMode="contain"
-        source={require('../../../assets/phone2.png')}
-      />
-      <Image
-        style={[
-          {
-            position: 'absolute',
-            maxHeight: verticalScale(463),
-            zIndex: 1,
-            height: calculate(253, 463).height,
-            width: scale(253),
-            right: -calculate(253, 463).width / 2.5,
-            bottom: 6,
-          },
-        ]}
-        resizeMode="contain"
-        source={require('../../../assets/phone1.png')}
-      />
+
       <Image
         source={require('../../../assets/bottom3_2.png')}
         style={{
