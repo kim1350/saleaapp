@@ -13,8 +13,6 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import {verticalScale} from '../../../utils/Adaptive';
-import {calculate} from '../../../functions';
 
 const {width} = Dimensions.get('window');
 const WelcomeScreen1: React.FC<{
@@ -55,7 +53,10 @@ const WelcomeScreen1: React.FC<{
         <Text style={stylesConst.text_title_32_e}>22</Text>
         <Text style={stylesConst.text_12_r}>бесплатных{'\n'}инструмента</Text>
       </Animated.View>
-
+      <Image
+        source={require('../../../assets/topWelcom1.png')}
+        style={styles.img1}
+      />
       <Image
         source={require('../../../assets/bottom1.png')}
         style={styles.img2}
@@ -123,19 +124,16 @@ const styles = StyleSheet.create({
     zIndex: 3,
   },
   img1: {
-    maxHeight: verticalScale(265),
     position: 'absolute',
-    height: calculate(216, 265).height,
-    zIndex: 3,
-    width: calculate(216, 265).width,
-    right: -calculate(216, 265).width / 4,
-    bottom: 91,
+    width: 96,
+    height: 56,
+    top: -2,
+    left: -2,
   },
   img2: {
     width: width,
     position: 'absolute',
     height: (670 / 375) * width,
-
     bottom: 0,
     zIndex: 0,
   },
