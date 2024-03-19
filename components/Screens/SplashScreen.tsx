@@ -1,40 +1,37 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  StatusBar,
+  ImageBackground,
+} from 'react-native';
 import React from 'react';
-import {Defs, RadialGradient, Rect, Stop, Svg} from 'react-native-svg';
-import CompanyIcon from '../../assets/icons/CompanyIcon';
+
 import {colors, normalize} from '../../constants';
 import {scale} from '../../utils/Adaptive';
-const win = Dimensions.get('window');
 
 const SplashScreen = () => {
   return (
     <View style={styles.container}>
-      <Svg width={win.width + 10} height={win.height}>
-        <Rect
-          width={win.width + 10}
-          height={win.height}
-          fill="url(#paint0_radial_1_107)"
-        />
-        <Defs>
-          <RadialGradient
-            id="paint0_radial_1_107"
-            cx="0"
-            cy="0"
-            r="1"
-            gradientUnits="userSpaceOnUse"
-            gradientTransform="translate(187.5 335.5) scale(618.5 345.659)">
-            <Stop stopColor="#68CC19" />
-            <Stop offset="1" stopColor="#0DA000" />
-            <Stop offset="1" stopColor="#0DA000" />
-          </RadialGradient>
-        </Defs>
-      </Svg>
-      <CompanyIcon style={styles.companyLogo} />
-      <Text style={styles.text}>Saleads.pro</Text>
+      <ImageBackground
+        style={{flex: 1}}
+        source={require('../../assets/launch_screen.png')}>
+        <View style={{height: STATUSBAR_HEIGHT}}>
+          <StatusBar
+            translucent
+            backgroundColor="transparent"
+            barStyle="light-content"
+          />
+        </View>
+        <SafeAreaView style={{flex: 1}}>
+          <Text style={styles.text}>Saleads.pro</Text>
+        </SafeAreaView>
+      </ImageBackground>
     </View>
   );
 };
-
+const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 export default SplashScreen;
 
 const styles = StyleSheet.create({

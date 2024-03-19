@@ -5,9 +5,10 @@ import {createStackNavigator, StackScreenProps} from '@react-navigation/stack';
 import OnboardingMain from '../Screens/Onboarding/OnboardingMain';
 import WebScreen from '../WebScreen';
 import CookieManager from '@react-native-cookies/cookies';
-import SplashScreen from 'react-native-splash-screen';
+import SplashScreen from '../Screens/SplashScreen';
 
 type RootStackParamList = {
+  SplashScreen: undefined;
   Onboarding: undefined;
   WebScreen: {type: 'signin' | 'registartion' | 'token'};
 };
@@ -29,11 +30,6 @@ const MainStack = () => {
       })
       .catch(() => {
         setLoadToken(false);
-      })
-      .finally(() => {
-        setTimeout(() => {
-          SplashScreen.hide();
-        }, 400);
       });
   };
   useEffect(() => {
@@ -42,9 +38,8 @@ const MainStack = () => {
 
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      {loadToken && (
-        <Stack.Screen name="Onboarding" component={OnboardingMain} />
-      )}
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      <Stack.Screen name="Onboarding" component={OnboardingMain} />
 
       <Stack.Screen
         name="WebScreen"
