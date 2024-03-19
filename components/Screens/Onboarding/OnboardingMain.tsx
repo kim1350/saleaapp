@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {colors, stylesConst} from '../../../constants';
@@ -30,7 +31,7 @@ import NavBarIcon4 from '../../../assets/icons/NavBarIcon4';
 import NavBarIcon5 from '../../../assets/icons/NavBarIcon5';
 import NavBarIcon6 from '../../../assets/icons/NavBarIcon6';
 import NavBarIcon7 from '../../../assets/icons/NavBarIcon7';
-import MyStatusBar from '../../MyStatusBar';
+
 import {OnboardingProps} from '../../routes/MainNavigate';
 
 const Data2 = [
@@ -106,47 +107,47 @@ const OnboardingMain: FC<OnboardingProps> = () => {
   }, [pagination]);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1}}>
-        <MyStatusBar barStyleT="light-content" colorStatus="#143976" />
-        <View style={styles.container}>
-          <TouchableOpacity
-            style={styles.profileStyle}
-            onPress={() => {
-              refScroll.current?.scrollToEnd();
-              setPagination(6);
-            }}>
-            <ProfileIcon />
-          </TouchableOpacity>
+    <View style={{flex: 1}}>
+      <StatusBar translucent backgroundColor="transparent" />
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.profileStyle}
+          onPress={() => {
+            refScroll.current?.scrollToEnd();
+            setPagination(6);
+          }}>
+          <ProfileIcon />
+        </TouchableOpacity>
 
-          <View style={styles.paginationStyle}>
-            {Array.from({length: 7}).map((_, index) => (
-              <Pagination
-                key={index}
-                animValue={translateX}
-                index={index}
-                length={7}
-              />
-            ))}
-          </View>
+        <View style={styles.paginationStyle}>
+          {Array.from({length: 7}).map((_, index) => (
+            <Pagination
+              key={index}
+              animValue={translateX}
+              index={index}
+              length={7}
+            />
+          ))}
+        </View>
 
-          <Animated.ScrollView
-            ref={refScroll}
-            onScroll={scrollHandler}
-            onMomentumScrollEnd={scrollHandler2}
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}>
-            {Data.map((item, index) => (
-              <item.Item
-                key={index}
-                animValue={translateX}
-                index={index}
-                pagination={pagination}
-              />
-            ))}
-          </Animated.ScrollView>
+        <Animated.ScrollView
+          ref={refScroll}
+          onScroll={scrollHandler}
+          onMomentumScrollEnd={scrollHandler2}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}>
+          {Data.map((item, index) => (
+            <item.Item
+              key={index}
+              animValue={translateX}
+              index={index}
+              pagination={pagination}
+            />
+          ))}
+        </Animated.ScrollView>
 
+        <SafeAreaView>
           <View style={styles.navbarBottom}>
             <ScrollView
               ref={ref}
@@ -170,14 +171,15 @@ const OnboardingMain: FC<OnboardingProps> = () => {
               ))}
             </ScrollView>
           </View>
-        </View>
+        </SafeAreaView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 export default OnboardingMain;
 const {width} = Dimensions.get('window');
+const STATUSBAR_HEIGHT = StatusBar.currentHeight ?? 0;
 
 const styles = StyleSheet.create({
   container: {flex: 1},
@@ -188,8 +190,7 @@ const styles = StyleSheet.create({
     paddingRight: 72,
     flex: 1,
     gap: 4,
-    top: 26,
-
+    top: 26 + STATUSBAR_HEIGHT,
     flexDirection: 'row',
     position: 'absolute',
     zIndex: 2,
@@ -214,8 +215,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 11,
     zIndex: 3,
-
-    marginTop: 9,
+    marginTop: 9 + STATUSBAR_HEIGHT,
     width: 40,
     height: 40,
     backgroundColor: colors.GREEN,
