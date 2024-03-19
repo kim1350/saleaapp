@@ -112,7 +112,7 @@ const OnboardingMain: FC<OnboardingProps> = () => {
       <StatusBar translucent backgroundColor="transparent" />
       <View style={styles.container}>
         <TouchableOpacity
-          style={styles.profileStyle}
+          style={[styles.profileStyle, {marginTop: insets.top + 9}]}
           onPress={() => {
             refScroll.current?.scrollToEnd();
             setPagination(6);
@@ -120,7 +120,7 @@ const OnboardingMain: FC<OnboardingProps> = () => {
           <ProfileIcon />
         </TouchableOpacity>
 
-        <View style={{...styles.paginationStyle}}>
+        <View style={[styles.paginationStyle, {top: 26 + insets.top}]}>
           {Array.from({length: 7}).map((_, index) => (
             <Pagination
               key={index}
@@ -179,7 +179,6 @@ const OnboardingMain: FC<OnboardingProps> = () => {
 
 export default OnboardingMain;
 const {width} = Dimensions.get('window');
-const STATUSBAR_HEIGHT = StatusBar.currentHeight ?? 0;
 
 const styles = StyleSheet.create({
   container: {flex: 1},
@@ -190,7 +189,6 @@ const styles = StyleSheet.create({
     paddingRight: 72,
     flex: 1,
     gap: 4,
-    top: 26 + STATUSBAR_HEIGHT,
     flexDirection: 'row',
     position: 'absolute',
     zIndex: 2,
@@ -215,7 +213,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 11,
     zIndex: 3,
-    marginTop: 9 + STATUSBAR_HEIGHT,
     width: 40,
     height: 40,
     backgroundColor: colors.GREEN,
