@@ -33,6 +33,7 @@ import NavBarIcon6 from '../../../assets/icons/NavBarIcon6';
 import NavBarIcon7 from '../../../assets/icons/NavBarIcon7';
 
 import {OnboardingProps} from '../../routes/MainNavigate';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Data2 = [
   {
@@ -75,6 +76,7 @@ const Data = [
   {Item: WelcomeScreen7},
 ];
 const OnboardingMain: FC<OnboardingProps> = () => {
+  const insets = useSafeAreaInsets();
   const ref = useRef<ScrollView>(null);
   const refScroll = useRef<Animated.ScrollView>(null);
   const [pagination, setPagination] = useState(0);
@@ -119,7 +121,7 @@ const OnboardingMain: FC<OnboardingProps> = () => {
           <ProfileIcon />
         </TouchableOpacity>
 
-        <View style={styles.paginationStyle}>
+        <View style={{...styles.paginationStyle}}>
           {Array.from({length: 7}).map((_, index) => (
             <Pagination
               key={index}
@@ -147,31 +149,29 @@ const OnboardingMain: FC<OnboardingProps> = () => {
           ))}
         </Animated.ScrollView>
 
-        <SafeAreaView>
-          <View style={styles.navbarBottom}>
-            <ScrollView
-              ref={ref}
-              showsHorizontalScrollIndicator={false}
-              horizontal
-              contentContainerStyle={styles.contentContainer}>
-              {Data2.map((item, index) => (
-                <NavbarButton
-                  value={item.text}
-                  style={[
-                    pagination === index
-                      ? styles.paginationStyleItemActive
-                      : styles.paginationStyleItemInactive,
-                  ]}
-                  icon={<item.icon />}
-                  key={index}
-                  onPress={() => {
-                    scrollToIndex({index});
-                  }}
-                />
-              ))}
-            </ScrollView>
-          </View>
-        </SafeAreaView>
+        <View style={{...styles.navbarBottom, paddingBottom: insets.bottom}}>
+          <ScrollView
+            ref={ref}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            contentContainerStyle={styles.contentContainer}>
+            {Data2.map((item, index) => (
+              <NavbarButton
+                value={item.text}
+                style={[
+                  pagination === index
+                    ? styles.paginationStyleItemActive
+                    : styles.paginationStyleItemInactive,
+                ]}
+                icon={<item.icon />}
+                key={index}
+                onPress={() => {
+                  scrollToIndex({index});
+                }}
+              />
+            ))}
+          </ScrollView>
+        </View>
       </View>
     </View>
   );
