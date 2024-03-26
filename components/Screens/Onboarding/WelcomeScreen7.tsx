@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     bottom: verticalScale(132),
     gap: 8,
+    zIndex: 9,
     width: '100%',
     paddingHorizontal: 32,
   },

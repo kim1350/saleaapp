@@ -132,6 +132,8 @@ const OnboardingMain: FC<OnboardingProps> = () => {
         </View>
 
         <Animated.ScrollView
+          alwaysBounceHorizontal={false}
+          bounces={false}
           ref={refScroll}
           onScroll={scrollHandler}
           onMomentumScrollEnd={scrollHandler2}

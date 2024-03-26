@@ -45,7 +45,6 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
       <MyStatusBar barStyleT="dark-content" colorStatus={colors.WHITE} />
       <WebView
         onError={() => {
-          console.log('asds');
           setTimeout(() => reloadWebView(), 5000);
         }}
         ref={webViewRef}
