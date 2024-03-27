@@ -44,52 +44,54 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.WHITE}}>
       <MyStatusBar barStyleT="dark-content" colorStatus={colors.WHITE} />
-      <WebView
-        ref={webViewRef}
-        renderError={() => (
-          <View
-            style={{
-              position: 'absolute',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-              height: '100%',
-              backgroundColor: colors.WHITE,
-            }}>
-            <ErrorIcon color={colors.GREEN} />
-            <Text style={stylesConst.text_14_r}>
-              Проверьте интернет соединение
-            </Text>
-          </View>
-        )}
-        renderLoading={() => (
-          <View
-            style={{
-              position: 'absolute',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-              height: '100%',
-              backgroundColor: colors.WHITE,
-            }}>
-            <ActivityIndicator size="large" color={colors.GREEN} />
-          </View>
-        )}
-        onError={() => {
-          reloadWebView();
-        }}
-        sharedCookiesEnabled
-        startInLoadingState
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        thirdPartyCookiesEnabled={true}
-        source={{
-          uri: types[route.params.type],
-        }}
-        style={{flex: 1}}
-      />
+      <View style={{flex: 1, backgroundColor: colors.WHITE}}>
+        <WebView
+          ref={webViewRef}
+          renderError={() => (
+            <View
+              style={{
+                position: 'absolute',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100%',
+                backgroundColor: colors.WHITE,
+              }}>
+              <ErrorIcon color={colors.GREEN} />
+              <Text style={stylesConst.text_14_r}>
+                Проверьте интернет соединение
+              </Text>
+            </View>
+          )}
+          renderLoading={() => (
+            <View
+              style={{
+                position: 'absolute',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100%',
+                backgroundColor: colors.WHITE,
+              }}>
+              <ActivityIndicator size="large" color={colors.GREEN} />
+            </View>
+          )}
+          onError={() => {
+            reloadWebView();
+          }}
+          sharedCookiesEnabled
+          startInLoadingState
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
+          thirdPartyCookiesEnabled={true}
+          source={{
+            uri: types[route.params.type],
+          }}
+          style={{flex: 1}}
+        />
+      </View>
     </SafeAreaView>
   );
 };
