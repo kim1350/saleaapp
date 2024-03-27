@@ -34,19 +34,19 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
 
     return () => backHandler.remove();
   }, []);
+
+  const webViewRef = useRef<WebView>(null);
+
   const reloadWebView = () => {
-    if (webViewRef.current) {
-      webViewRef.current.reload();
+    if (webViewRef?.current) {
+      webViewRef.current.reload;
     }
   };
-  const webViewRef = useRef<WebView>(null);
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <MyStatusBar barStyleT="dark-content" colorStatus={colors.WHITE} />
       <WebView
-        onError={() => {
-          reloadWebView();
-        }}
         ref={webViewRef}
         renderError={() => (
           <View
@@ -77,8 +77,8 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
             <ActivityIndicator size="large" color={colors.GREEN} />
           </View>
         )}
-        onMessage={e => {
-          console.log(e);
+        onError={() => {
+          reloadWebView();
         }}
         sharedCookiesEnabled
         startInLoadingState
