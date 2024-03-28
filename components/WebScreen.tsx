@@ -23,7 +23,7 @@ const types = {
 };
 const WebScreen: FC<WebScreenProps> = ({route}) => {
   const INJECTEDJAVASCRIPT =
-    "const meta = document.createElement('meta'); meta.setAttribute('content', 'initial-scale=1.0, maximum-scale=1.0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); ";
+    "const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); ";
 
   useEffect(() => {
     const backAction = () => {
@@ -55,6 +55,7 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
       <View style={{flex: 1, backgroundColor: colors.WHITE}}>
         <MyStatusBar barStyleT="light-content" colorStatus="#2B3143" />
         <WebView
+          setBuiltInZoomControls={false}
           onFileDownload={({nativeEvent: {downloadUrl}}) => {
             Alert.alert(
               'Скачать',
