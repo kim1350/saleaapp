@@ -13,6 +13,7 @@ import {colors, stylesConst} from '../constants';
 import {WebScreenProps} from './routes/MainNavigate';
 import ErrorIcon from '../assets/icons/ErrorIcon';
 import {downloadFile} from '../utils/downloadFile';
+import MyStatusBar from './MyStatusBar';
 
 const types = {
   signin: 'https://saleads.pro/login?mobile=1',
@@ -48,8 +49,9 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
     }
   };
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#2B3143'}}>
       <View style={{flex: 1, backgroundColor: colors.WHITE}}>
+        <MyStatusBar barStyleT="light-content" colorStatus="#2B3143" />
         <WebView
           onFileDownload={({nativeEvent: {downloadUrl}}) => {
             Alert.alert(
