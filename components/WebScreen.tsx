@@ -8,6 +8,7 @@ import {
   Alert,
   Linking,
   SafeAreaView,
+  Platform,
 } from 'react-native';
 import {colors, stylesConst} from '../constants';
 import {WebScreenProps} from './routes/MainNavigate';
@@ -105,6 +106,26 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
             </View>;
           }}
           onShouldStartLoadWithRequest={e => {
+            if (Platform.OS === 'ios' && e.url.includes('.png')) {
+              Alert.alert(
+                'Скачать',
+                'Вы хотите скачать файл ?',
+                [
+                  {
+                    text: 'Download',
+                    onPress: () => {
+                      downloadFile(e.url);
+                    },
+                  },
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                ],
+                {cancelable: false},
+              );
+            }
             if (
               e.url.includes('pro.selfwork.ru') ||
               e.url.includes('webmaster/cpaider')
