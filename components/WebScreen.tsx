@@ -7,6 +7,7 @@ import {
   Text,
   Alert,
   Linking,
+  SafeAreaView,
 } from 'react-native';
 import {colors, stylesConst} from '../constants';
 import {WebScreenProps} from './routes/MainNavigate';
@@ -47,104 +48,106 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
     }
   };
   return (
-    <View style={{flex: 1, backgroundColor: colors.WHITE}}>
-      <WebView
-        onFileDownload={({nativeEvent: {downloadUrl}}) => {
-          Alert.alert(
-            'Скачать',
-            'Вы хотите скачать файл ?',
-            [
-              {
-                text: 'Download',
-                onPress: () => {
-                  downloadFile(downloadUrl);
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: colors.WHITE}}>
+        <WebView
+          onFileDownload={({nativeEvent: {downloadUrl}}) => {
+            Alert.alert(
+              'Скачать',
+              'Вы хотите скачать файл ?',
+              [
+                {
+                  text: 'Download',
+                  onPress: () => {
+                    downloadFile(downloadUrl);
+                  },
                 },
-              },
-              {
-                text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
-              },
-            ],
-            {cancelable: false},
-          );
-        }}
-        ref={webViewRef}
-        renderError={() => (
-          <View
-            style={{
-              position: 'absolute',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-              height: '100%',
-              backgroundColor: colors.WHITE,
-            }}>
-            <ErrorIcon color={colors.GREEN} />
-            <Text style={stylesConst.text_14_r}>
-              Проверьте интернет соединение
-            </Text>
-          </View>
-        )}
-        onLoadStart={() => {
-          <View
-            style={{
-              position: 'absolute',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-              height: '100%',
-              backgroundColor: colors.WHITE,
-            }}>
-            <ActivityIndicator size="large" color={colors.GREEN} />
-          </View>;
-        }}
-        onNavigationStateChange={e => {
-          console.log(e.url);
-        }}
-        onShouldStartLoadWithRequest={e => {
-          console.log(e);
-          if (
-            e.url.includes('pro.selfwork.ru') ||
-            e.url.includes('webmaster/cpaider')
-          ) {
-            Linking.openURL(e.url);
-            return false;
-          } else {
-            return true;
-          }
-        }}
-        renderLoading={() => (
-          <View
-            style={{
-              position: 'absolute',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-              height: '100%',
-              backgroundColor: colors.WHITE,
-            }}>
-            <ActivityIndicator size="large" color={colors.GREEN} />
-          </View>
-        )}
-        onError={() => {
-          reloadWebView();
-        }}
-        injectedJavaScript={INJECTEDJAVASCRIPT}
-        sharedCookiesEnabled
-        startInLoadingState
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        thirdPartyCookiesEnabled={true}
-        source={{
-          headers: {
-            'X-Device-Type': 'saleads-app',
-          },
-          uri: types[route.params.type],
-        }}
-        style={{flex: 1}}
-      />
-    </View>
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+              ],
+              {cancelable: false},
+            );
+          }}
+          ref={webViewRef}
+          renderError={() => (
+            <View
+              style={{
+                position: 'absolute',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100%',
+                backgroundColor: colors.WHITE,
+              }}>
+              <ErrorIcon color={colors.GREEN} />
+              <Text style={stylesConst.text_14_r}>
+                Проверьте интернет соединение
+              </Text>
+            </View>
+          )}
+          onLoadStart={() => {
+            <View
+              style={{
+                position: 'absolute',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100%',
+                backgroundColor: colors.WHITE,
+              }}>
+              <ActivityIndicator size="large" color={colors.GREEN} />
+            </View>;
+          }}
+          onNavigationStateChange={e => {
+            console.log(e.url);
+          }}
+          onShouldStartLoadWithRequest={e => {
+            console.log(e);
+            if (
+              e.url.includes('pro.selfwork.ru') ||
+              e.url.includes('webmaster/cpaider')
+            ) {
+              Linking.openURL(e.url);
+              return false;
+            } else {
+              return true;
+            }
+          }}
+          renderLoading={() => (
+            <View
+              style={{
+                position: 'absolute',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100%',
+                backgroundColor: colors.WHITE,
+              }}>
+              <ActivityIndicator size="large" color={colors.GREEN} />
+            </View>
+          )}
+          onError={() => {
+            reloadWebView();
+          }}
+          injectedJavaScript={INJECTEDJAVASCRIPT}
+          sharedCookiesEnabled
+          startInLoadingState
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
+          thirdPartyCookiesEnabled={true}
+          source={{
+            headers: {
+              'X-Device-Type': 'saleads-app',
+            },
+            uri: types[route.params.type],
+          }}
+          style={{flex: 1}}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
