@@ -26,6 +26,7 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
 
   useEffect(() => {
     const backAction = () => {
+      console.log('back');
       if (webViewRef.current) {
         webViewRef.current.goBack();
         return true;
@@ -103,11 +104,7 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
               <ActivityIndicator size="large" color={colors.GREEN} />
             </View>;
           }}
-          onNavigationStateChange={e => {
-            console.log(e.url);
-          }}
           onShouldStartLoadWithRequest={e => {
-            console.log(e);
             if (
               e.url.includes('pro.selfwork.ru') ||
               e.url.includes('webmaster/cpaider')
