@@ -55,6 +55,9 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
       <View style={{flex: 1, backgroundColor: colors.WHITE}}>
         <MyStatusBar barStyleT="light-content" colorStatus="#2B3143" />
         <WebView
+          bounces={false}
+          scalesPageToFit={false}
+          contentMode="mobile"
           setBuiltInZoomControls={false}
           onFileDownload={({nativeEvent: {downloadUrl}}) => {
             Alert.alert(
