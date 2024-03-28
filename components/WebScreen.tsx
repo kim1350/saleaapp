@@ -1,14 +1,6 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {WebView} from 'react-native-webview';
-import {
-  ActivityIndicator,
-  BackHandler,
-  SafeAreaView,
-  View,
-  Text,
-  Alert,
-} from 'react-native';
-import MyStatusBar from './MyStatusBar';
+import {ActivityIndicator, BackHandler, View, Text, Alert} from 'react-native';
 import {colors, stylesConst} from '../constants';
 import {WebScreenProps} from './routes/MainNavigate';
 import ErrorIcon from '../assets/icons/ErrorIcon';
@@ -48,92 +40,89 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
     }
   };
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: colors.WHITE}}>
-      <MyStatusBar barStyleT="dark-content" colorStatus={colors.WHITE} />
-      <View style={{flex: 1, backgroundColor: colors.WHITE}}>
-        <WebView
-          onFileDownload={({nativeEvent: {downloadUrl}}) => {
-            Alert.alert(
-              'Скачать',
-              'Вы хотите скачать файл ?',
-              [
-                {
-                  text: 'Download',
-                  onPress: () => {
-                    downloadFile(downloadUrl);
-                  },
+    <View style={{flex: 1, backgroundColor: colors.WHITE}}>
+      <WebView
+        onFileDownload={({nativeEvent: {downloadUrl}}) => {
+          Alert.alert(
+            'Скачать',
+            'Вы хотите скачать файл ?',
+            [
+              {
+                text: 'Download',
+                onPress: () => {
+                  downloadFile(downloadUrl);
                 },
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('Cancel Pressed'),
-                  style: 'cancel',
-                },
-              ],
-              {cancelable: false},
-            );
-          }}
-          ref={webViewRef}
-          renderError={() => (
-            <View
-              style={{
-                position: 'absolute',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '100%',
-                height: '100%',
-                backgroundColor: colors.WHITE,
-              }}>
-              <ErrorIcon color={colors.GREEN} />
-              <Text style={stylesConst.text_14_r}>
-                Проверьте интернет соединение
-              </Text>
-            </View>
-          )}
-          onLoadStart={() => {
-            <View
-              style={{
-                position: 'absolute',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '100%',
-                height: '100%',
-                backgroundColor: colors.WHITE,
-              }}>
-              <ActivityIndicator size="large" color={colors.GREEN} />
-            </View>;
-          }}
-          renderLoading={() => (
-            <View
-              style={{
-                position: 'absolute',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '100%',
-                height: '100%',
-                backgroundColor: colors.WHITE,
-              }}>
-              <ActivityIndicator size="large" color={colors.GREEN} />
-            </View>
-          )}
-          onError={() => {
-            reloadWebView();
-          }}
-          injectedJavaScript={INJECTEDJAVASCRIPT}
-          sharedCookiesEnabled
-          startInLoadingState
-          javaScriptEnabled={true}
-          domStorageEnabled={true}
-          thirdPartyCookiesEnabled={true}
-          source={{
-            headers: {
-              'X-Device-Type': 'saleads-app',
-            },
-            uri: types[route.params.type],
-          }}
-          style={{flex: 1}}
-        />
-      </View>
-    </SafeAreaView>
+              },
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+            ],
+            {cancelable: false},
+          );
+        }}
+        ref={webViewRef}
+        renderError={() => (
+          <View
+            style={{
+              position: 'absolute',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+              height: '100%',
+              backgroundColor: colors.WHITE,
+            }}>
+            <ErrorIcon color={colors.GREEN} />
+            <Text style={stylesConst.text_14_r}>
+              Проверьте интернет соединение
+            </Text>
+          </View>
+        )}
+        onLoadStart={() => {
+          <View
+            style={{
+              position: 'absolute',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+              height: '100%',
+              backgroundColor: colors.WHITE,
+            }}>
+            <ActivityIndicator size="large" color={colors.GREEN} />
+          </View>;
+        }}
+        renderLoading={() => (
+          <View
+            style={{
+              position: 'absolute',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+              height: '100%',
+              backgroundColor: colors.WHITE,
+            }}>
+            <ActivityIndicator size="large" color={colors.GREEN} />
+          </View>
+        )}
+        onError={() => {
+          reloadWebView();
+        }}
+        injectedJavaScript={INJECTEDJAVASCRIPT}
+        sharedCookiesEnabled
+        startInLoadingState
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        thirdPartyCookiesEnabled={true}
+        source={{
+          headers: {
+            'X-Device-Type': 'saleads-app',
+          },
+          uri: types[route.params.type],
+        }}
+        style={{flex: 1}}
+      />
+    </View>
   );
 };
 
