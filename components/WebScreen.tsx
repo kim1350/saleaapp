@@ -1,6 +1,13 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {WebView} from 'react-native-webview';
-import {ActivityIndicator, BackHandler, View, Text, Alert} from 'react-native';
+import {
+  ActivityIndicator,
+  BackHandler,
+  View,
+  Text,
+  Alert,
+  Linking,
+} from 'react-native';
 import {colors, stylesConst} from '../constants';
 import {WebScreenProps} from './routes/MainNavigate';
 import ErrorIcon from '../assets/icons/ErrorIcon';
@@ -91,6 +98,14 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
             }}>
             <ActivityIndicator size="large" color={colors.GREEN} />
           </View>;
+        }}
+        onShouldStartLoadWithRequest={e => {
+          if (e.url.includes('saleads.pro')) {
+            return true;
+          } else {
+            Linking.openURL(e.url);
+            return false;
+          }
         }}
         renderLoading={() => (
           <View
