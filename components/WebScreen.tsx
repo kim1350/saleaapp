@@ -6,11 +6,13 @@ import {
   SafeAreaView,
   View,
   Text,
+  Alert,
 } from 'react-native';
 import MyStatusBar from './MyStatusBar';
 import {colors, stylesConst} from '../constants';
 import {WebScreenProps} from './routes/MainNavigate';
 import ErrorIcon from '../assets/icons/ErrorIcon';
+import {downloadFile} from '../utils/downloadFile';
 
 const types = {
   signin: 'https://saleads.pro/login?mobile=1',
@@ -18,6 +20,9 @@ const types = {
   token: 'https://saleads.pro/lk/webmaster/dashboard',
 };
 const WebScreen: FC<WebScreenProps> = ({route}) => {
+  const INJECTEDJAVASCRIPT =
+    "const meta = document.createElement('meta'); meta.setAttribute('content', 'initial-scale=1.0, maximum-scale=1.0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); ";
+
   useEffect(() => {
     const backAction = () => {
       if (webViewRef.current) {
@@ -42,12 +47,31 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
       webViewRef.current.reload;
     }
   };
-
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.WHITE}}>
       <MyStatusBar barStyleT="dark-content" colorStatus={colors.WHITE} />
       <View style={{flex: 1, backgroundColor: colors.WHITE}}>
         <WebView
+          onFileDownload={({nativeEvent: {downloadUrl}}) => {
+            Alert.alert(
+              'Скачать',
+              'Вы хотите скачать файл ?',
+              [
+                {
+                  text: 'Download',
+                  onPress: () => {
+                    downloadFile(downloadUrl);
+                  },
+                },
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+              ],
+              {cancelable: false},
+            );
+          }}
           ref={webViewRef}
           renderError={() => (
             <View
@@ -65,6 +89,19 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
               </Text>
             </View>
           )}
+          onLoadStart={() => {
+            <View
+              style={{
+                position: 'absolute',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                height: '100%',
+                backgroundColor: colors.WHITE,
+              }}>
+              <ActivityIndicator size="large" color={colors.GREEN} />
+            </View>;
+          }}
           renderLoading={() => (
             <View
               style={{
@@ -81,12 +118,16 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
           onError={() => {
             reloadWebView();
           }}
+          injectedJavaScript={INJECTEDJAVASCRIPT}
           sharedCookiesEnabled
           startInLoadingState
           javaScriptEnabled={true}
           domStorageEnabled={true}
           thirdPartyCookiesEnabled={true}
           source={{
+            headers: {
+              'X-Device-Type': 'saleads-app',
+            },
             uri: types[route.params.type],
           }}
           style={{flex: 1}}
