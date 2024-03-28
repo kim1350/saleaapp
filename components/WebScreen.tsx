@@ -125,6 +125,7 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
                 ],
                 {cancelable: false},
               );
+              return false;
             }
             if (
               e.url.includes('pro.selfwork.ru') ||
