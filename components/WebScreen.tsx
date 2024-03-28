@@ -99,12 +99,19 @@ const WebScreen: FC<WebScreenProps> = ({route}) => {
             <ActivityIndicator size="large" color={colors.GREEN} />
           </View>;
         }}
+        onNavigationStateChange={e => {
+          console.log(e.url);
+        }}
         onShouldStartLoadWithRequest={e => {
-          if (e.url.includes('saleads.pro')) {
-            return true;
-          } else {
+          console.log(e);
+          if (
+            e.url.includes('pro.selfwork.ru') ||
+            e.url.includes('webmaster/cpaider')
+          ) {
             Linking.openURL(e.url);
             return false;
+          } else {
+            return true;
           }
         }}
         renderLoading={() => (
